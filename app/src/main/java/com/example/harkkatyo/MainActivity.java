@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
 /*Testi*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int x = 100;
+        int y = 200;
+        int z = 100;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -31,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
