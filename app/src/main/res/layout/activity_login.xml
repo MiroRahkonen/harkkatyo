@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="FeelGood App"
+        android:text="Co2 App"
         android:textColor="@color/teal_700"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_EmailAddress" />
 
     <Button
-        android:id="@+id/button_login"
+        android:id="@+id/button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
