@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context=".RegisterActivity">
 
     <TextView
@@ -76,6 +75,4 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_Password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-=======
-    tools:context=".RegisterActivity"/>
->>>>>>> 14ca143a5c61eaf729ce68625e19493511093e68
+
