@@ -13,14 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Harkkatyo">
-<<<<<<< HEAD
         <activity android:name=".RegisterActivity"></activity>
-=======
         <activity android:name=".SummaryActivity"></activity>
         <activity android:name=".ConsumptionActivity" />
         <activity android:name=".VehicleActivity" />
         <activity android:name=".HousingActivity" />
->>>>>>> 14ca143a5c61eaf729ce68625e19493511093e68
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
