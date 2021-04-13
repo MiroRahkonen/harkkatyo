@@ -14,7 +14,11 @@ public class SummaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_summary);
     }
 
-    public void saveChanges(View v){
+    public void saveData(View v){
+        finish();
+    }
+
+    public void cancel(View v){
         finish();
     }
 }
