@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class HousingActivity extends AppCompatActivity {
 
@@ -31,19 +32,19 @@ public class HousingActivity extends AppCompatActivity {
 
     public void saveChanges(View v){
         int area,residents;
+        String vehicle_FuelType = spinner_HouseType.getSelectedItem().toString();
 
         try{        /*Getting data from edittexts*/
             area = Integer.parseInt(editText_Area.getText().toString());
             residents = Integer.parseInt(editText_Residents.getText().toString());
-            System.out.println("Saved");
+            Toast.makeText(HousingActivity.this, "Saved",Toast.LENGTH_SHORT).show();
+            finish();
         }
         catch (NumberFormatException e) {
-            System.out.println("Wrong input type or field empty");
-            area = 0;
-            residents = 0;
+            Toast.makeText(HousingActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
-
+    }
+    public void cancel(View v){
         finish();
     }
-
 }

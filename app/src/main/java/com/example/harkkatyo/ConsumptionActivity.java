@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ConsumptionActivity extends AppCompatActivity {
 
@@ -33,16 +34,14 @@ public class ConsumptionActivity extends AppCompatActivity {
             electronics = Integer.parseInt(editText_Electronics.getText().toString());
             paper = Integer.parseInt(editText_Paper.getText().toString());
             recreation = Integer.parseInt(editText_Recreation.getText().toString());
-            System.out.println("Saved");
+            Toast.makeText(ConsumptionActivity.this, "Saved",Toast.LENGTH_SHORT).show();
+            finish();
         }
         catch (NumberFormatException e) {
-            System.out.println("Wrong input type or field empty");
-            clothing = 0;
-            electronics = 0;
-            paper = 0;
-            recreation = 0;
+            Toast.makeText(ConsumptionActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
-
+    }
+    public void cancel(View v){
         finish();
     }
 }
