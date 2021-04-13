@@ -2,8 +2,10 @@ package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,11 +19,21 @@ public class RegisterActivity extends AppCompatActivity {
     TextView textView2, textView3;
     Boolean check1, check2;
 
+=======
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class RegisterActivity extends AppCompatActivity {
+
+    EditText editText_Email;
+    EditText editText_Password;
+>>>>>>> 31bb2254076e7156f6149f237dca792c5c2c77cc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+<<<<<<< HEAD
 
         button_confirm = (Button) findViewById(R.id.button_confirm);
         button_return = (Button) findViewById(R.id.button_return);
@@ -87,6 +99,33 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else {
             return true;
+=======
+        editText_Email = findViewById(R.id.editText_RegisterEmail);
+        editText_Password = findViewById(R.id.editText_RegisterPassword);
+
+    }
+
+    public void cancel(View v){
+        finish();
+    }
+
+    public void saveAccount(View v){
+        String email,password;
+        email = editText_Email.getText().toString();
+        password = editText_Password.getText().toString();
+        if(email.equals("")) {
+            Toast.makeText(RegisterActivity.this, "Missing email",Toast.LENGTH_SHORT).show();
+        }
+        else if(password.equals("")) {
+            Toast.makeText(RegisterActivity.this, "Missing password",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            /*Muuta funktiota*/
+
+            Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(RegisterActivity.this, "Account saved",Toast.LENGTH_SHORT).show();
+>>>>>>> 31bb2254076e7156f6149f237dca792c5c2c77cc
         }
     }
 
