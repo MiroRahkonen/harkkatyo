@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DoStuff
-                System.out.println("Testi1");
+                //Check if credencials are right.... coming soon
+                goToMain();
             }
         });
 
@@ -43,17 +43,29 @@ public class LoginActivity extends AppCompatActivity {
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Testi2");
-                //DoStuff
+                goToRegister();
             }
         });
     }
 
 
 
+    //Makes this opening Activity
     public void gotoMain(View v){
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
+    }
+
+
+    //Move to RegisterActivity
+    private void goToRegister() {
+        Intent switchActivityIntent = new Intent (this, RegisterActivity.class);
+        startActivity(switchActivityIntent);
+    }
+    //Move to MainActivity
+    private void goToMain() {
+        Intent switchActivityIntent = new Intent (this, MainActivity.class);
+        startActivity(switchActivityIntent);
     }
 
 

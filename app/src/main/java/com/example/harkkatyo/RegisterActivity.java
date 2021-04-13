@@ -8,11 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.SQLOutput;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText editText_EmailAddress2, editText_Password;
     Button button_confirm, button_return;
     TextView textView2, textView3;
+    Boolean check1, check2;
 
 
     @Override
@@ -27,16 +30,30 @@ public class RegisterActivity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
 
+        //Return back to LoginActivity
         button_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Return
+                finish();
             }
         });
+
+        //Confirming new account
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Check things
+                check1 = checkEmail();
+                check2 = checkPassword();
+                if (check1 && check2 == true) { //Check if email and password are good
+                    System.out.println("Creating new account");
+                    //Create new account
+                    String email1 = editText_EmailAddress2.getText().toString();
+                    String password1 = editText_Password.getText().toString();
+                    Account d1 = new Account(email1, password1);
+                    System.out.println("New account created");
+                    //Mby success window or smth here...
+                    finish();
+                }
             }
         });
 
@@ -44,12 +61,32 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-    //Check for email input
+    //Check if user has given email address
     private Boolean checkEmail() {
         String test = editText_EmailAddress2.getText().toString();
 
         if (test.isEmpty()) {
-            editText_EmailAddress2.setError("");
+            editText_EmailAddress2.setError("You have to give email");
+            return false;
+        }
+        //else if ()
+        else {
+            return true;
+        }
+    }
+    //Check if user has given password and if it meets the requirements
+    private Boolean checkPassword() {
+        String test = editText_Password.getText().toString();
+        if (test.isEmpty()) {
+            editText_Password.setError("You have to give password");
+            return false;
+        }
+        else if (test.length() <= 4) {
+            editText_Password.setError("Password length 4 characters min");
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
