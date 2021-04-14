@@ -74,8 +74,8 @@
         android:layout_width="233dp"
         android:layout_height="69dp"
         android:layout_marginBottom="40dp"
-        android:onClick="createSummary"
-        android:text="Create summary"
+        android:onClick="print"
+        android:text="Print consumption.clothing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

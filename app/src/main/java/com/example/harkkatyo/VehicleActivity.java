@@ -1,6 +1,7 @@
 package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +19,14 @@ public class VehicleActivity extends AppCompatActivity {
     EditText editText_Distance;
     EditText editText_Passengers;
     EditText editText_Year;
+    private DataViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle);
 
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         spinner_VehicleFuel = findViewById(R.id.spinner_VehicleFuel);
         ArrayAdapter<String> adapter_VehicleFuel = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,vehicleFuel);
         adapter_VehicleFuel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -40,22 +43,18 @@ public class VehicleActivity extends AppCompatActivity {
     }
 
     public void saveChanges(View v){
-        int distance,passengers,year;
-        String fuelType = spinner_VehicleFuel.getSelectedItem().toString();
-        String size = spinner_VehicleSize.getSelectedItem().toString();
 
-        try{        /*Getting data from edittexts*/
-            distance = Integer.parseInt(editText_Distance.getText().toString());
-            passengers = Integer.parseInt(editText_Passengers.getText().toString());
-            year = Integer.parseInt(editText_Year.getText().toString());
+        try{        /*Getting data from edittexts to viewmodel*/
+            viewModel.vehicle_FuelType = spinner_VehicleFuel.getSelectedItem().toString();
+            viewModel.vehicle_Size = spinner_VehicleSize.getSelectedItem().toString();
+            viewModel.vehicle_Distance = Integer.parseInt(editText_Distance.getText().toString());
+            viewModel.vehicle_Passengers = Integer.parseInt(editText_Passengers.getText().toString());
+            viewModel.vehicle_Year = Integer.parseInt(editText_Year.getText().toString());
             Toast.makeText(VehicleActivity.this, "Saved",Toast.LENGTH_SHORT).show();
             finish();
         }
-        catch (NumberFormatException e) {
+        catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
             Toast.makeText(VehicleActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
-            distance = 0;
-            passengers = 0;
-            year = 0;
         }
     }
 
