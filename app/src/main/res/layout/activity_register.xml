@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< HEAD
     <EditText
         android:id="@+id/editText_EmailAddress2"
         android:layout_width="310dp"
@@ -31,8 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-=======
->>>>>>> 31bb2254076e7156f6149f237dca792c5c2c77cc
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -67,11 +65,9 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/editText_EmailAddress2" />
-=======
         app:layout_constraintTop_toBottomOf="@+id/editText_RegisterEmail" />
->>>>>>> 31bb2254076e7156f6149f237dca792c5c2c77cc
+
 
     <Button
         android:id="@+id/button_LoginButton"
@@ -79,7 +75,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
-        android:onClick="saveAccount"
         android:text="Confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_RegisterPassword" />
@@ -90,7 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="20dp"
-        android:onClick="cancel"
         android:text="Return"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_RegisterPassword" />

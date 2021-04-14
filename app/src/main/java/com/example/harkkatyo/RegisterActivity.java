@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.SQLOutput;
 
@@ -18,27 +18,19 @@ public class RegisterActivity extends AppCompatActivity {
     Button button_confirm, button_return;
     TextView textView2, textView3;
     Boolean check1, check2;
-
-=======
-import android.widget.EditText;
-import android.widget.Toast;
-
-public class RegisterActivity extends AppCompatActivity {
-
-    EditText editText_Email;
-    EditText editText_Password;
->>>>>>> 31bb2254076e7156f6149f237dca792c5c2c77cc
+    /*EditText editText_Email;
+    EditText editText_Password;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-<<<<<<< HEAD
 
-        button_confirm = (Button) findViewById(R.id.button_confirm);
-        button_return = (Button) findViewById(R.id.button_return);
+
+        button_confirm = (Button) findViewById(R.id.button_LoginButton);
+        button_return = (Button) findViewById(R.id.button_RegisterReturn);
         editText_EmailAddress2 = (EditText) findViewById(R.id.editText_EmailAddress2);
-        editText_Password = (EditText) findViewById(R.id.editText_Password);
+        editText_Password = (EditText) findViewById(R.id.editText_RegisterPassword);
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
 
@@ -99,17 +91,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else {
             return true;
-=======
-        editText_Email = findViewById(R.id.editText_RegisterEmail);
-        editText_Password = findViewById(R.id.editText_RegisterPassword);
+        }
 
     }
 
-    public void cancel(View v){
+    /*public void cancel(View v){
         finish();
     }
+    */
 
-    public void saveAccount(View v){
+
+    /*public void saveAccount(View v){
         String email,password;
         email = editText_Email.getText().toString();
         password = editText_Password.getText().toString();
@@ -120,13 +112,12 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "Missing password",Toast.LENGTH_SHORT).show();
         }
         else{
-            /*Muuta funktiota*/
+
 
             Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
             startActivity(intent);
             Toast.makeText(RegisterActivity.this, "Account saved",Toast.LENGTH_SHORT).show();
->>>>>>> 31bb2254076e7156f6149f237dca792c5c2c77cc
         }
-    }
+    }*/
 
 }
