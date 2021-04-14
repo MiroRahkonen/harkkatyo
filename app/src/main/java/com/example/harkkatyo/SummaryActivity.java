@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class SummaryActivity extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class SummaryActivity extends AppCompatActivity {
     }
 
     public void saveData(View v){
+        Toast.makeText(SummaryActivity.this, "Data saved",Toast.LENGTH_SHORT).show();
         finish();
     }
 
