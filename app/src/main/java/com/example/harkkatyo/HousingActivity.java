@@ -3,6 +3,7 @@ package com.example.harkkatyo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,17 +37,25 @@ public class HousingActivity extends AppCompatActivity {
     public void saveChanges(View v){
 
         try{        /*Getting data from edittexts to viewmodel*/
-            viewModel.housing_Area = Integer.parseInt(editText_Area.getText().toString());
-            viewModel.housing_Residents = Integer.parseInt(editText_Residents.getText().toString());
-            viewModel.housing_Type = spinner_HouseType.getSelectedItem().toString();
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("fromActivity","housingActivity");
+
+            returnIntent.putExtra("area",Integer.parseInt(editText_Area.getText().toString()));
+            returnIntent.putExtra("residents",Integer.parseInt(editText_Area.getText().toString()));
+            returnIntent.putExtra("type",spinner_HouseType.getSelectedItem().toString());
             Toast.makeText(HousingActivity.this, "Saved",Toast.LENGTH_SHORT).show();
+            setResult(1,returnIntent);
             finish();
+
         }
-        catch (NumberFormatException e) {   /*Shows error if input isn't valid*/
+        catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
             Toast.makeText(HousingActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
     }
     public void cancel(View v){
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("fromActivity","null");
+        setResult(0,returnIntent);
         finish();
     }
 }

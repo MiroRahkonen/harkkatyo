@@ -7,52 +7,52 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView_Vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="260dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="8dp"
         android:text="(not set)"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoVehicle" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView_Consumption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="260dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="8dp"
         android:text="(not set)"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoConsumption" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView_Housing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="260dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="8dp"
         android:text="(not set)"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoHousing" />
 
     <Button
         android:id="@+id/button_MainGotoConsumption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="124dp"
         android:onClick="gotoConsumption"
         android:text="Go to consumption"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_MainGotoVehicle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_MainGotoHousing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="96dp"
         android:onClick="gotoHousing"
         android:text="Go to housing"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,20 +62,20 @@
         android:id="@+id/button_MainGotoVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="100dp"
         android:onClick="gotoVehicle"
         android:text="Go to vehicle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button_MainGotoHousing" />
 
     <Button
         android:id="@+id/button_MainSummary"
         android:layout_width="233dp"
         android:layout_height="69dp"
         android:layout_marginBottom="40dp"
-        android:onClick="print"
-        android:text="Print consumption.clothing"
+        android:onClick="createSummary"
+        android:text="Create summary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

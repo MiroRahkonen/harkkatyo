@@ -3,6 +3,7 @@ package com.example.harkkatyo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -45,13 +46,18 @@ public class VehicleActivity extends AppCompatActivity {
     public void saveChanges(View v){
 
         try{        /*Getting data from edittexts to viewmodel*/
-            viewModel.vehicle_FuelType = spinner_VehicleFuel.getSelectedItem().toString();
-            viewModel.vehicle_Size = spinner_VehicleSize.getSelectedItem().toString();
-            viewModel.vehicle_Distance = Integer.parseInt(editText_Distance.getText().toString());
-            viewModel.vehicle_Passengers = Integer.parseInt(editText_Passengers.getText().toString());
-            viewModel.vehicle_Year = Integer.parseInt(editText_Year.getText().toString());
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("fromActivity","vehicleActivity");
+
+            returnIntent.putExtra("distance",Integer.parseInt(editText_Distance.getText().toString()));
+            returnIntent.putExtra("passengers",Integer.parseInt(editText_Passengers.getText().toString()));
+            returnIntent.putExtra("year",Integer.parseInt(editText_Year.getText().toString()));
+            returnIntent.putExtra("fuel",spinner_VehicleFuel.getSelectedItem().toString());
+            returnIntent.putExtra("size",spinner_VehicleSize.getSelectedItem().toString());
             Toast.makeText(VehicleActivity.this, "Saved",Toast.LENGTH_SHORT).show();
+            setResult(1,returnIntent);
             finish();
+
         }
         catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
             Toast.makeText(VehicleActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
@@ -59,6 +65,9 @@ public class VehicleActivity extends AppCompatActivity {
     }
 
     public void cancel(View v){
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("fromActivity","null");
+        setResult(0,returnIntent);
         finish();
     }
 }

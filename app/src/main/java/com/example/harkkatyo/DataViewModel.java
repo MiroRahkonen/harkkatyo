@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 public class DataViewModel extends ViewModel {
 
-    protected int consumption_Clothing, consumption_Electronics, consumption_Paper, consumption_Recreation;
+    protected int consumption_Clothing = 50, consumption_Electronics, consumption_Paper, consumption_Recreation;
     protected String consumption_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?" +
             "query.clothing="+consumption_Clothing+"&query.electronics="+consumption_Electronics+"&query.paper="+consumption_Paper+"&query.recreation="+consumption_Recreation;
 
