@@ -18,8 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button button_confirm, button_return;
     TextView textView2, textView3;
     Boolean check1, check2;
-    /*EditText editText_Email;
-    EditText editText_Password;*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
                 check1 = checkEmail();
                 check2 = checkPassword();
                 if (check1 && check2 == true) { //Check if email and password are good
-                    System.out.println("Creating new account");
                     //Create new account
-                    String email1 = editText_EmailAddress2.getText().toString();
-                    String password1 = editText_Password.getText().toString();
-                    Account d1 = new Account(email1, password1);
-                    System.out.println("New account created");
-                    //Mby success window or smth here...
-                    finish();
+                    saveAccount();
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this, "Insufficient information",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -100,24 +96,16 @@ public class RegisterActivity extends AppCompatActivity {
     }
     */
 
+    //Creates new Account
+    public void saveAccount(){
+        String email1 = editText_EmailAddress2.getText().toString();
+        String password1 = editText_Password.getText().toString();
+        Account d1 = new Account(email1, password1);
+        Toast.makeText(RegisterActivity.this, "New Account Created",Toast.LENGTH_SHORT).show();
+        //Switch to main Activity
+        Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+        startActivity(intent);
 
-    /*public void saveAccount(View v){
-        String email,password;
-        email = editText_Email.getText().toString();
-        password = editText_Password.getText().toString();
-        if(email.equals("")) {
-            Toast.makeText(RegisterActivity.this, "Missing email",Toast.LENGTH_SHORT).show();
-        }
-        else if(password.equals("")) {
-            Toast.makeText(RegisterActivity.this, "Missing password",Toast.LENGTH_SHORT).show();
-        }
-        else{
-
-
-            Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-            startActivity(intent);
-            Toast.makeText(RegisterActivity.this, "Account saved",Toast.LENGTH_SHORT).show();
-        }
-    }*/
+    }
 
 }
