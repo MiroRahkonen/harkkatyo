@@ -68,7 +68,7 @@
         android:layout_marginTop="116dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="From: 1 - "
+        android:hint="Range: 1 - ∞"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
         android:layout_marginTop="112dp"
         android:ems="10"
         android:inputType="number"
-        android:hint="From: 1 - "
+        android:hint="Range: 1 - ∞"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,5 +109,25 @@
         android:text="cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_HousingArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Current: "
+        app:layout_constraintStart_toEndOf="@+id/editText_HousingArea"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView_HousingResidents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="Current: "
+        app:layout_constraintStart_toEndOf="@+id/editText_HouseResidents"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,30 +7,30 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
-        android:id="@+id/textView_Vehicle"
+        android:id="@+id/textView_VehicleData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
         android:text="(not set)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoVehicle" />
 
     <TextView
-        android:id="@+id/textView_Consumption"
+        android:id="@+id/textView_ConsumptionData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
         android:text="(not set)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoConsumption" />
 
     <TextView
-        android:id="@+id/textView_Housing"
+        android:id="@+id/textView_HousingData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
         android:text="(not set)"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,10 +73,11 @@
         android:id="@+id/button_MainSummary"
         android:layout_width="233dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="16dp"
         android:onClick="createSummary"
         android:text="Create summary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
