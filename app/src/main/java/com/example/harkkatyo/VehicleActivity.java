@@ -80,13 +80,13 @@ public class VehicleActivity extends AppCompatActivity {
                     viewModel.vehicle_Size = "large";
                     break;
             }
-
-            if(testInput() == true){
+            //If input is correct and thus testinput returns true, saving data
+            if(testInput()){
                 returnIntent.putExtra("distance",Integer.parseInt(editText_Distance.getText().toString()));
                 returnIntent.putExtra("passengers",Integer.parseInt(editText_Passengers.getText().toString()));
                 returnIntent.putExtra("year",Integer.parseInt(editText_Year.getText().toString()));
-                returnIntent.putExtra("fuel",spinner_VehicleFuel.getSelectedItem().toString());
-                returnIntent.putExtra("size",spinner_VehicleSize.getSelectedItem().toString());
+                returnIntent.putExtra("fuel",viewModel.vehicle_FuelType);
+                returnIntent.putExtra("size",viewModel.vehicle_Size);
                 Toast.makeText(VehicleActivity.this, "Saved",Toast.LENGTH_SHORT).show();
                 setResult(1,returnIntent);
                 finish();
@@ -116,24 +116,24 @@ public class VehicleActivity extends AppCompatActivity {
 
         //Setting saved options to spinners
         switch(viewModel.vehicle_FuelType){
-            case("Gasoline"):
+            case("gasoline"):
                 spinner_VehicleFuel.setSelection(0);
                 break;
-            case("Diesel"):
+            case("diesel"):
                 spinner_VehicleFuel.setSelection(1);
                 break;
-            case("Electricity"):
+            case("electricity"):
                 spinner_VehicleFuel.setSelection(2);
                 break;
         }
         switch(viewModel.vehicle_Size){
-            case("Mini"):
+            case("mini"):
                 spinner_VehicleSize.setSelection(0);
                 break;
-            case("Medium"):
+            case("mediumFamily"):
                 spinner_VehicleSize.setSelection(1);
                 break;
-            case("Large"):
+            case("large"):
                 spinner_VehicleSize.setSelection(2);
                 break;
         }

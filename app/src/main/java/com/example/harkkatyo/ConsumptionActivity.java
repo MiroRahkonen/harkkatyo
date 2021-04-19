@@ -41,7 +41,7 @@ public class ConsumptionActivity extends AppCompatActivity {
             viewModel.consumption_Paper = Integer.parseInt(editText_Paper.getText().toString());
             viewModel.consumption_Recreation = Integer.parseInt(editText_Recreation.getText().toString());
 
-            if(testInput() == true){
+            if(testInput()){
                 returnIntent.putExtra("fromActivity","consumptionActivity");
                 returnIntent.putExtra("clothing",viewModel.consumption_Clothing);
                 returnIntent.putExtra("electronics",viewModel.consumption_Electronics);

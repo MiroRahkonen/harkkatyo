@@ -58,10 +58,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
+    //Saving data to viewmodel from result
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String fromActivity = data.getStringExtra("fromActivity");
 
+        //Saving to different variables based on the activity
         switch (fromActivity) {
             case ("consumptionActivity"):
 
@@ -77,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
                         "&query.recreation="+viewModel.consumption_Recreation;
                 System.out.println(viewModel.consumption_URL);
                 TextView consumptionText = findViewById(R.id.textView_ConsumptionData);
-                consumptionText.setText("Clothing: " + viewModel.consumption_Clothing +
+                consumptionText.setText("Data saved!");
+                /*consumptionText.setText("Clothing: " + viewModel.consumption_Clothing +
                         "\nElectronics: " + viewModel.consumption_Electronics +
                         "\nPaper: " + viewModel.consumption_Paper +
-                        "\nRecreation: " + viewModel.consumption_Recreation);
+                        "\nRecreation: " + viewModel.consumption_Recreation);*/
                 break;
 
             case ("housingActivity"):
-                TextView housingText = findViewById(R.id.textView_HousingData);
                 viewModel.housing_Area = data.getIntExtra("area", 0);
                 viewModel.housing_Residents = data.getIntExtra("residents", 0);
                 viewModel.housing_Type = data.getStringExtra("type");
@@ -94,13 +96,14 @@ public class MainActivity extends AppCompatActivity {
                         "&area="+viewModel.housing_Area+
                         "&residents="+viewModel.housing_Residents;
                 System.out.println(viewModel.housing_URL);
-                housingText.setText("Area: " + viewModel.housing_Area +
+                TextView housingText = findViewById(R.id.textView_HousingData);
+                housingText.setText("Data saved!");
+                /*housingText.setText("Area: " + viewModel.housing_Area +
                         "\nResidents: " + viewModel.housing_Residents +
-                        "\nHouse type: " + viewModel.housing_Type);
+                        "\nHouse type: " + viewModel.housing_Type);*/
                 break;
 
             case ("vehicleActivity"):
-                TextView vehicleText = findViewById(R.id.textView_VehicleData);
                 viewModel.vehicle_Distance = data.getIntExtra("distance", 0);
                 viewModel.vehicle_Passengers = data.getIntExtra("passengers", 0);
                 viewModel.vehicle_Year = data.getIntExtra("year", 0);
@@ -114,17 +117,22 @@ public class MainActivity extends AppCompatActivity {
                         "&query.fuel="+viewModel.vehicle_FuelType+
                         "&query.passengerCount="+viewModel.vehicle_Passengers;
                 System.out.println(viewModel.vehicle_URL);
-                vehicleText.setText("Distance: " + viewModel.vehicle_Distance +
+                TextView vehicleText = findViewById(R.id.textView_VehicleData);
+                vehicleText.setText("Data saved!");
+                /*vehicleText.setText("Distance: " + viewModel.vehicle_Distance +
                         "\nPassengers: " + viewModel.vehicle_Passengers +
                         "\nYear: " + viewModel.vehicle_Year +
                         "\nFuel type: " + viewModel.vehicle_FuelType +
-                        "\nVehicle size: " + viewModel.vehicle_Size);
+                        "\nVehicle size: " + viewModel.vehicle_Size);*/
                 break;
         }
     }
 
     public void createSummary(View v){
         Intent intent = new Intent(MainActivity.this,SummaryActivity.class);
+        intent.putExtra("consumption_URL",viewModel.consumption_URL);
+        intent.putExtra("housing_URL",viewModel.housing_URL);
+        intent.putExtra("vehicle_URL",viewModel.vehicle_URL);
         startActivity(intent);
     }
 }

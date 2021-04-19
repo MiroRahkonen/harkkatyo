@@ -43,13 +43,26 @@ public class HousingActivity extends AppCompatActivity {
 
             viewModel.housing_Area = Integer.parseInt(editText_Area.getText().toString());
             viewModel.housing_Residents = Integer.parseInt(editText_Residents.getText().toString());
-            viewModel.housing_Type = spinner_HouseType.getSelectedItem().toString();
+            //viewModel.housing_Type = spinner_HouseType.getSelectedItem().toString();
 
-            if(testInput() == true){
+            String housingType = spinner_HouseType.getSelectedItem().toString();
+            switch(housingType) {
+                case ("Flat"):
+                    viewModel.housing_Type = "flat";
+                    break;
+                case ("Row"):
+                    viewModel.housing_Type = "row";
+                    break;
+                case ("Family"):
+                    viewModel.housing_Type = "family";
+                    break;
+            }
+
+            if(testInput()){
                 returnIntent.putExtra("fromActivity","housingActivity");
                 returnIntent.putExtra("area",Integer.parseInt(editText_Area.getText().toString()));
                 returnIntent.putExtra("residents",Integer.parseInt(editText_Residents.getText().toString()));
-                returnIntent.putExtra("type",spinner_HouseType.getSelectedItem().toString());
+                returnIntent.putExtra("type",viewModel.housing_Type);
                 Toast.makeText(HousingActivity.this, "Saved",Toast.LENGTH_SHORT).show();
                 setResult(1,returnIntent);
                 finish();
@@ -72,14 +85,15 @@ public class HousingActivity extends AppCompatActivity {
         area.setText("Current: "+ viewModel.housing_Area);
         TextView residents = findViewById(R.id.textView_HousingResidents);
         residents.setText("Current: "+ viewModel.housing_Residents);
+        System.out.println(viewModel.housing_Type);
         switch(viewModel.housing_Type){
-            case("Flat"):
+            case("flat"):
                 spinner_HouseType.setSelection(0);
                 break;
-            case("Row"):
+            case("row"):
                 spinner_HouseType.setSelection(1);
                 break;
-            case("Family"):
+            case("family"):
                 spinner_HouseType.setSelection(2);
                 break;
         }
