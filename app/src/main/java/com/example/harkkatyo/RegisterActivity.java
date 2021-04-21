@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.opencsv.CSVWriter;
+
+import java.io.IOException;
 import java.sql.SQLOutput;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -50,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (check1 && check2 == true) { //Check if email and password are good
                     //Create new account
                     saveAccount();
+
                 }
                 else {
                     Toast.makeText(RegisterActivity.this, "Insufficient information",Toast.LENGTH_SHORT).show();
@@ -101,6 +105,12 @@ public class RegisterActivity extends AppCompatActivity {
         String email1 = editText_EmailAddress2.getText().toString();
         String password1 = editText_Password.getText().toString();
         Account d1 = new Account(email1, password1);
+        /*CSVwriter writercsv = CSVwriter.getInstance();
+        try {
+            writercsv.writeFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         Toast.makeText(RegisterActivity.this, "New Account Created",Toast.LENGTH_SHORT).show();
         //Switch to main Activity
         Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
