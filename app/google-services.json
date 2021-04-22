@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438119242804",
+    "project_id": "harkkatyo-e2aad",
+    "storage_bucket": "harkkatyo-e2aad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438119242804:android:854995c0d48825a2a73e61",
+        "android_client_info": {
+          "package_name": "com.example.harkkatyo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438119242804-sbl6d9due7bfapnq6oea3mkmlhbkkj4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9C-7CRr2R2wIQfXhAq_okU1mrh-B5CYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438119242804-sbl6d9due7bfapnq6oea3mkmlhbkkj4m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
