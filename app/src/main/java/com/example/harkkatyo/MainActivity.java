@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 public class MainActivity extends AppCompatActivity {
 
     private DataViewModel viewModel;
+    TextView textView_ConsumptionSaved, textView_HousingSaved, textView_VehicleSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
         viewModel = new ViewModelProvider(this).get(DataViewModel.class);
+        textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
+        textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
+        textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
     }
 
     protected void onResume(){
@@ -78,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         "&query.paper="+viewModel.consumption_Paper+
                         "&query.recreation="+viewModel.consumption_Recreation;
                 System.out.println(viewModel.consumption_URL);
-                TextView consumptionText = findViewById(R.id.textView_ConsumptionData);
-                consumptionText.setText("Data saved!");
+                textView_ConsumptionSaved.setText("Data saved");
                 /*consumptionText.setText("Clothing: " + viewModel.consumption_Clothing +
                         "\nElectronics: " + viewModel.consumption_Electronics +
                         "\nPaper: " + viewModel.consumption_Paper +
@@ -96,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         "&area="+viewModel.housing_Area+
                         "&residents="+viewModel.housing_Residents;
                 System.out.println(viewModel.housing_URL);
-                TextView housingText = findViewById(R.id.textView_HousingData);
-                housingText.setText("Data saved!");
+                textView_HousingSaved.setText("Data saved");
                 /*housingText.setText("Area: " + viewModel.housing_Area +
                         "\nResidents: " + viewModel.housing_Residents +
                         "\nHouse type: " + viewModel.housing_Type);*/
@@ -117,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
                         "&query.fuel="+viewModel.vehicle_FuelType+
                         "&query.passengerCount="+viewModel.vehicle_Passengers;
                 System.out.println(viewModel.vehicle_URL);
-                TextView vehicleText = findViewById(R.id.textView_VehicleData);
-                vehicleText.setText("Data saved!");
+                textView_VehicleSaved.setText("Data saved");
                 /*vehicleText.setText("Distance: " + viewModel.vehicle_Distance +
                         "\nPassengers: " + viewModel.vehicle_Passengers +
                         "\nYear: " + viewModel.vehicle_Year +
@@ -129,10 +131,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createSummary(View v){
-        Intent intent = new Intent(MainActivity.this,SummaryActivity.class);
-        intent.putExtra("consumption_URL",viewModel.consumption_URL);
-        intent.putExtra("housing_URL",viewModel.housing_URL);
-        intent.putExtra("vehicle_URL",viewModel.vehicle_URL);
-        startActivity(intent);
+        String consumptionText = textView_ConsumptionSaved.getText().toString();
+        String housingText = textView_HousingSaved.getText().toString();
+        String vehicleText = textView_VehicleSaved.getText().toString();
+        System.out.println(consumptionText);
+        System.out.println(housingText);
+        System.out.println(vehicleText);
+        //Testing if all data has been saved
+        if(consumptionText != "Data saved"){
+            Toast.makeText(MainActivity.this, "Consumption information missing",Toast.LENGTH_SHORT).show();
+        }
+        else if (housingText != "Data saved"){
+            Toast.makeText(MainActivity.this, "Housing information missing",Toast.LENGTH_SHORT).show();
+        }
+        else if(vehicleText != "Data saved"){
+            Toast.makeText(MainActivity.this, "Vehicle information missing",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this,SummaryActivity.class);
+            intent.putExtra("consumption_URL",viewModel.consumption_URL);
+            intent.putExtra("housing_URL",viewModel.housing_URL);
+            intent.putExtra("vehicle_URL",viewModel.vehicle_URL);
+            startActivity(intent);
+        }
     }
 }
