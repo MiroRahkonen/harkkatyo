@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
         textView4 = (TextView) findViewById(R.id.textView4);
 
+        mAuth = FirebaseAuth.getInstance();
+
 
 
         //Confirm
@@ -53,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 check2 = checkPassword1();
                 if (check1 && check2 == true) {
                     loginUser(email, password);
+                    //goToMain();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "Insufficient information",Toast.LENGTH_LONG).show();
