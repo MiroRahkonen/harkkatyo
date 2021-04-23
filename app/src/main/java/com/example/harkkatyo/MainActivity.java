@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textView_ConsumptionSaved, textView_HousingSaved, textView_VehicleSaved;
     private Boolean consumptionSaved = false, housingSaved = false, vehicleSaved = false;
     Consumption consumptionData;
-
+    Housing housingData;
+    Vehicle vehicleData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.content_main);
 
         consumptionData = consumptionData.getInstance();
+        //housingData = housingData.getClass();
+        vehicleData.getInstance();
         //viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
         textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
@@ -61,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void gotoVehicle(View v){
         Intent intent = new Intent(MainActivity.this,VehicleActivity.class);
-        intent.putExtra("viewModel_Distance",viewModel.vehicle_Distance);
-        intent.putExtra("viewModel_FuelType",viewModel.vehicle_FuelType);
-        intent.putExtra("viewModel_Passengers",viewModel.vehicle_Passengers);
-        intent.putExtra("viewModel_Size",viewModel.vehicle_Size);
-        intent.putExtra("viewModel_Year",viewModel.vehicle_Year);
+        intent.putExtra("viewModel_Distance",vehicleData.getDistance());
+        intent.putExtra("viewModel_FuelType",vehicleData.getFuel());
+        intent.putExtra("viewModel_Passengers",vehicleData.getPassengers());
+        intent.putExtra("viewModel_Size",vehicleData.getSize());
+        intent.putExtra("viewModel_Year",vehicleData.getYear());
         startActivityForResult(intent,0);
     }
 
@@ -78,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
         //Saving to different variables based on the activity
         switch (fromActivity) {
             case ("consumptionActivity"):
-                int clothing = data.getIntExtra("clothing", 0);
-                int electronics = data.getIntExtra("electronics", 0);
-                int paper = data.getIntExtra("paper", 0);
-                int recreation = data.getIntExtra("recreation", 0);
-                consumptionData = consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
+                int consumptionClothing = data.getIntExtra("clothing", 0);
+                int consumptionElectronics = data.getIntExtra("electronics", 0);
+                int consumptionPaper = data.getIntExtra("paper", 0);
+                int consumptionRecreation = data.getIntExtra("recreation", 0);
+                consumptionData = consumptionData.consumptionResults(consumptionClothing,0,consumptionElectronics,0,consumptionPaper,consumptionRecreation,0);
 
                 /*viewModel.consumption_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?" +
                         "query.clothing="+ viewModel.consumption_Clothing+
@@ -99,9 +102,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case ("housingActivity"):
-                viewModel.housing_Area = data.getIntExtra("area", 0);
-                viewModel.housing_Residents = data.getIntExtra("residents", 0);
-                viewModel.housing_Type = data.getStringExtra("type");
+                int housingArea = data.getIntExtra("area", 0);
+                int housingResidents = data.getIntExtra("residents", 0);
+                String housingType = data.getStringExtra("type");
+
 
                 viewModel.housing_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/HousingCalculator/InfrastructureEstimate?" +
                         "type="+viewModel.housing_Type+
@@ -116,21 +120,21 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case ("vehicleActivity"):
-                viewModel.vehicle_Distance = data.getIntExtra("distance", 0);
-                viewModel.vehicle_Passengers = data.getIntExtra("passengers", 0);
-                viewModel.vehicle_Year = data.getIntExtra("year", 0);
-                viewModel.vehicle_FuelType = data.getStringExtra("fuel");
-                viewModel.vehicle_Size = data.getStringExtra("size");
-
-                viewModel.vehicle_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/TransportCalculator/CarEstimate?" +
+                int vehicleDistance = data.getIntExtra("distance", 0);
+                int vehiclePassengers = data.getIntExtra("passengers", 0);
+                int vehicleYear = data.getIntExtra("year", 0);
+                String vehicleFuel = data.getStringExtra("fuel");
+                String vehicleSize = data.getStringExtra("size");
+                vehicleData.getVehicleResult(vehicleDistance,vehiclePassengers, vehicleYear, vehicleFuel, vehicleSize);
+                textView_VehicleSaved.setText("Data saved");
+                vehicleSaved = true;
+                /*viewModel.vehicle_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/TransportCalculator/CarEstimate?" +
                         "query.buildYear="+viewModel.vehicle_Year+
                         "&query.driveDistance="+viewModel.vehicle_Distance+
                         "&query.size="+viewModel.vehicle_Size+
                         "&query.fuel="+viewModel.vehicle_FuelType+
-                        "&query.passengerCount="+viewModel.vehicle_Passengers;
-                System.out.println(viewModel.vehicle_URL);
-                textView_VehicleSaved.setText("Data saved");
-                vehicleSaved = true;
+                        "&query.passengerCount="+viewModel.vehicle_Passengers;*/
+
                 /*vehicleText.setText("Distance: " + viewModel.vehicle_Distance +
                         "\nPassengers: " + viewModel.vehicle_Passengers +
                         "\nYear: " + viewModel.vehicle_Year +

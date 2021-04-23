@@ -16,7 +16,8 @@ public class ConsumptionActivity extends AppCompatActivity {
     EditText editText_Electronics;
     EditText editText_Paper;
     EditText editText_Recreation;
-    private DataViewModel viewModel;
+    DataViewModel viewModel;
+    private Consumption consumptionData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class ConsumptionActivity extends AppCompatActivity {
 
     public void getIntentValues(){
         Bundle extras = getIntent().getExtras();
-        viewModel.consumption_Clothing= extras.getInt("viewModel_Clothing");
+        viewModel.consumption_Clothing = extras.getInt("viewModel_Clothing");
         viewModel.consumption_Electronics = extras.getInt("viewModel_Electronics");
         viewModel.consumption_Paper = extras.getInt("viewModel_Paper");
         viewModel.consumption_Recreation = extras.getInt("viewModel_Recreation");
