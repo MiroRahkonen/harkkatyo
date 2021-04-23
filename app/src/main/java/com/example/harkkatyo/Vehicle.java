@@ -26,7 +26,7 @@ public class Vehicle {
 
     public static Vehicle getInstance(){ return vehicle; }
 
-    public double vehicleResult(int distance, int passengers, int year, String fuel, String size){
+    public double vehicleResults(int distance, int passengers, int year, String fuel, String size){
         this.distance = distance;
         this.passengers = passengers;
         this.year = year;
