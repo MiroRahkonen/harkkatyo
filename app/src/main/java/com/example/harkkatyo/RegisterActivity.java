@@ -134,6 +134,8 @@ public class RegisterActivity extends AppCompatActivity {
         String password1 = editText_Password.getText().toString();
         //Create Firebase account
         createUser(email1, password1, name);
+        createDatabase(email1, password1, name);
+        finish();
 
 
 
@@ -156,26 +158,23 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Account d1 = new Account(email, password);
                             //Create new user in firebase and link it to account
-                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(d1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        //Store info in database
-                                        root = FirebaseDatabase.getInstance();
-                                        ref = root.getReference("userinfo");
-                                        ref.child(name).setValue(d1);
-                                        Toast.makeText(RegisterActivity.this, "New Account Created",Toast.LENGTH_LONG).show();
-                                        finish();
-                                    }
-                                    else {
-                                        Toast.makeText(RegisterActivity.this, "Account creation failed",Toast.LENGTH_SHORT).show();
-                                    }
+                            System.out.println("Toimii************************************************************************************************************************************************************************");
+                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(d1);
+                            //Store info in database
+                            /*root = FirebaseDatabase.getInstance();
+                            ref = root.getReference("testi");
+                            ref.child(name).setValue("moi");*/
+                            Toast.makeText(RegisterActivity.this, "New Account Created", Toast.LENGTH_LONG).show();
 
 
-                                }
-                            });
+
                         }
+
+
+
+
+
+
                         else {
                             Toast.makeText(RegisterActivity.this, "Account creation failed",Toast.LENGTH_SHORT).show();
                         }
@@ -184,13 +183,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    /*public void createDatabase() {
+    public void createDatabase(String email, String password, String name) {
+        //Store info in database
         root = FirebaseDatabase.getInstance();
-        ref = root.getReference("userinfo");
+        ref = root.getReference("testi");
+        ref.setValue("kukkuluuruu");
 
-        ref.child()
-
-    }*/
+    }
 
 
 }
