@@ -23,6 +23,7 @@ public class Consumption {
     private int paper;
     private int recreation;
     private int shoes;
+    private String urlString;
 
     private Consumption(){}
 
@@ -37,7 +38,7 @@ public class Consumption {
         this.recreation = recreation;
         this.shoes = shoes;
         try {
-            String urlString = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?query.clothing=" + clothing + "&query.communications=" + communications + "&query.electronics=" + electronics + "&query.other=" + other + "&query.paper=" + paper + "&query.recreation=" + recreation + "&query.shoes=" + shoes;
+            urlString = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?query.clothing=" + clothing + "&query.communications=" + communications + "&query.electronics=" + electronics + "&query.other=" + other + "&query.paper=" + paper + "&query.recreation=" + recreation + "&query.shoes=" + shoes;
             System.out.println(urlString);
             JSONObject object = JsonApi.newInstance().getJson(urlString);
             clothingResult = object.getDouble("Clothing");
@@ -63,4 +64,5 @@ public class Consumption {
     public double getRecreation(){ return recreationResult; }
     public double getShoes(){ return shoesResult; }
     public double getConsumptionTotal(){ return consTotalResult; }
+    public String getURL(){return urlString;}
 }

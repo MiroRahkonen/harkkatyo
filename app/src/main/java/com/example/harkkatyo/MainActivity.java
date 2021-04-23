@@ -17,16 +17,18 @@ public class MainActivity extends AppCompatActivity {
     private DataViewModel viewModel;
     TextView textView_ConsumptionSaved, textView_HousingSaved, textView_VehicleSaved;
     private Boolean consumptionSaved = false, housingSaved = false, vehicleSaved = false;
+    Consumption consumptionData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
+
+        consumptionData = consumptionData.getInstance();
+        //viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
         textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
         textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
@@ -38,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void gotoConsumption(View v){
         Intent intent = new Intent(MainActivity.this,ConsumptionActivity.class);
-        intent.putExtra("viewModel_Clothing",viewModel.consumption_Clothing);
-        intent.putExtra("viewModel_Electronics",viewModel.consumption_Electronics);
-        intent.putExtra("viewModel_Paper",viewModel.consumption_Paper);
-        intent.putExtra("viewModel_Recreation",viewModel.consumption_Recreation);
+        intent.putExtra("viewModel_Clothing",consumptionData.getClothing());
+        intent.putExtra("viewModel_Electronics",consumptionData.getElectronics());
+        intent.putExtra("viewModel_Paper",consumptionData.getPaper());
+        intent.putExtra("viewModel_Recreation",consumptionData.getRecreation());
         startActivityForResult(intent,0);
     }
 
@@ -76,18 +78,18 @@ public class MainActivity extends AppCompatActivity {
         //Saving to different variables based on the activity
         switch (fromActivity) {
             case ("consumptionActivity"):
+                int clothing = data.getIntExtra("clothing", 0);
+                int electronics = data.getIntExtra("electronics", 0);
+                int paper = data.getIntExtra("paper", 0);
+                int recreation = data.getIntExtra("recreation", 0);
+                consumptionData = consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
 
-                viewModel.consumption_Clothing = data.getIntExtra("clothing", 0);
-                viewModel.consumption_Electronics = data.getIntExtra("electronics", 0);
-                viewModel.consumption_Paper = data.getIntExtra("paper", 0);
-                viewModel.consumption_Recreation = data.getIntExtra("recreation", 0);
-
-                viewModel.consumption_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?" +
+                /*viewModel.consumption_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?" +
                         "query.clothing="+ viewModel.consumption_Clothing+
                         "&query.electronics="+ viewModel.consumption_Electronics+
                         "&query.paper="+viewModel.consumption_Paper+
-                        "&query.recreation="+viewModel.consumption_Recreation;
-                System.out.println(viewModel.consumption_URL);
+                        "&query.recreation="+viewModel.consumption_Recreation;*/
+                System.out.println(consumptionData.getURL());
                 textView_ConsumptionSaved.setText("Data saved");
                 consumptionSaved = true;
                 /*consumptionText.setText("Clothing: " + viewModel.consumption_Clothing +
