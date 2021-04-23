@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 public class HousingActivity extends AppCompatActivity {
 
+    int area,residents;
+    String type;
     String[] HouseTypes = new String[]{"Flat","Row","Family"};
     Spinner spinner_HouseType;
     EditText editText_Area;
     EditText editText_Residents;
-    private DataViewModel viewModel;
+    Housing housingData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class HousingActivity extends AppCompatActivity {
         spinner_HouseType.setAdapter(adapter_HouseType);
         editText_Area = findViewById(R.id.editText_HousingArea);
         editText_Residents = findViewById(R.id.editText_HouseResidents);
-        getIntentValues();
+        housingData = Housing.getInstance();
         setValuesToText();
     }
 
@@ -40,28 +42,24 @@ public class HousingActivity extends AppCompatActivity {
         try{        /*Getting data from edittexts to viewmodel*/
             Intent returnIntent = new Intent();
 
-            viewModel.housing_Area = Integer.parseInt(editText_Area.getText().toString());
-            viewModel.housing_Residents = Integer.parseInt(editText_Residents.getText().toString());
-            //viewModel.housing_Type = spinner_HouseType.getSelectedItem().toString();
+            area = Integer.parseInt(editText_Area.getText().toString());
+            residents = Integer.parseInt(editText_Residents.getText().toString());
 
-            String housingType = spinner_HouseType.getSelectedItem().toString();
-            switch(housingType) {
+            type = spinner_HouseType.getSelectedItem().toString();
+            switch(type) {
                 case ("Flat"):
-                    viewModel.housing_Type = "flat";
+                    type = "flat";
                     break;
                 case ("Row"):
-                    viewModel.housing_Type = "row";
+                    type = "row";
                     break;
                 case ("Family"):
-                    viewModel.housing_Type = "family";
+                    type = "family";
                     break;
             }
-
             if(testInput()){
+                housingData.housingResults(area,residents,type);
                 returnIntent.putExtra("fromActivity","housingActivity");
-                returnIntent.putExtra("area",Integer.parseInt(editText_Area.getText().toString()));
-                returnIntent.putExtra("residents",Integer.parseInt(editText_Residents.getText().toString()));
-                returnIntent.putExtra("type",viewModel.housing_Type);
                 Toast.makeText(HousingActivity.this, "Saved",Toast.LENGTH_SHORT).show();
                 setResult(1,returnIntent);
                 finish();
@@ -72,20 +70,12 @@ public class HousingActivity extends AppCompatActivity {
         }
     }
 
-    public void getIntentValues(){
-        Bundle extras = getIntent().getExtras();
-        viewModel.housing_Area = extras.getInt("viewModel_Area");
-        viewModel.housing_Residents = extras.getInt("viewModel_Resident");
-        viewModel.housing_Type = extras.getString("viewModel_Type");
-    }
-
     public void setValuesToText(){
         TextView area = findViewById(R.id.textView_HousingArea);
-        area.setText("Current: "+ viewModel.housing_Area);
+        area.setText("Current: "+ housingData.getArea());
         TextView residents = findViewById(R.id.textView_HousingResidents);
-        residents.setText("Current: "+ viewModel.housing_Residents);
-        System.out.println(viewModel.housing_Type);
-        switch(viewModel.housing_Type){
+        residents.setText("Current: "+ housingData.getResidents());
+        switch(housingData.getType()){
             case("flat"):
                 spinner_HouseType.setSelection(0);
                 break;
@@ -99,11 +89,11 @@ public class HousingActivity extends AppCompatActivity {
     }
 
     public Boolean testInput(){
-        if(viewModel.housing_Area < 1){
+        if(area < 1){
             Toast.makeText(HousingActivity.this, "Area range is (1 - ...)",Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if(viewModel.housing_Residents < 1){
+        else if(residents < 1){
             Toast.makeText(HousingActivity.this, "Resident range is (1 - ...)",Toast.LENGTH_SHORT).show();
             return false;
         }

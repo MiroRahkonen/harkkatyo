@@ -1,6 +1,5 @@
 package com.example.harkkatyo;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
     TextView textView_ConsumptionSaved, textView_HousingSaved, textView_VehicleSaved;
     private Boolean consumptionSaved = false, housingSaved = false, vehicleSaved = false;
     protected Consumption consumptionData;
-    Housing housingData;
-    Vehicle vehicleData;
+    protected Housing housingData;
+    protected Vehicle vehicleData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent,0);
     }
 
-    @SuppressLint("SetTextI18n")
     //Saving data to viewmodel from result
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -70,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case ("housingActivity"):
-                int housingArea = data.getIntExtra("area", 0);
-                int housingResidents = data.getIntExtra("residents", 0);
-                String housingType = data.getStringExtra("type");
                 textView_HousingSaved.setText("Data saved");
                 housingSaved = true;
                 break;

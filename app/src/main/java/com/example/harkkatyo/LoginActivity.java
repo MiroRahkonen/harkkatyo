@@ -70,33 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 goToRegister();
             }
         });
-        /*editText_Email = findViewById(R.id.editText_LoginEmail);
-        editText_Password = findViewById(R.id.editText_LoginPassword);
-        button_Register = findViewById(R.id.button_LoginRegisterButton);*/
     }
-
-
-
-
-    /*public void gotoMain(View v){
-        String email,password;
-        email = editText_Email.getText().toString();
-        password = editText_Password.getText().toString();
-        if(email.equals("")) {
-            Toast.makeText(LoginActivity.this, "Missing email",Toast.LENGTH_SHORT).show();
-        }
-        else if(password.equals("")) {
-            Toast.makeText(LoginActivity.this, "Missing password",Toast.LENGTH_SHORT).show();
-        }
-        else{
-
-
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
-            Toast.makeText(LoginActivity.this, "Login successful",Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
 
 
     //Move to RegisterActivity

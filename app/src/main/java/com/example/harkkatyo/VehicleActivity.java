@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 public class VehicleActivity extends AppCompatActivity {
 
+    int distance, passengers, year;
+    String fuel, size;
+
     String[] vehicleFuel = new String[]{"Gasoline","Diesel","Electricity"};
     String[] vehicleSize = new String[]{"Mini","Medium","Large"};
     Spinner spinner_VehicleSize;
@@ -21,14 +24,13 @@ public class VehicleActivity extends AppCompatActivity {
     EditText editText_Distance;
     EditText editText_Passengers;
     EditText editText_Year;
-    private DataViewModel viewModel;
+    Vehicle vehicleData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle);
 
-        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         spinner_VehicleFuel = findViewById(R.id.spinner_VehicleFuel);
         ArrayAdapter<String> adapter_VehicleFuel = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,vehicleFuel);
         adapter_VehicleFuel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -41,7 +43,7 @@ public class VehicleActivity extends AppCompatActivity {
         editText_Distance = findViewById(R.id.editText_VehicleDistance);
         editText_Passengers = findViewById(R.id.editText_VehiclePassengers);
         editText_Year = findViewById(R.id.editText_VehicleYear);
-        getIntentValues();
+        vehicleData = Vehicle.getInstance();
         setValuesToText();
     }
 
@@ -51,44 +53,41 @@ public class VehicleActivity extends AppCompatActivity {
             Intent returnIntent = new Intent();
             returnIntent.putExtra("fromActivity","vehicleActivity");
 
-            viewModel.vehicle_Distance = Integer.parseInt(editText_Distance.getText().toString());
-            viewModel.vehicle_Passengers = Integer.parseInt(editText_Passengers.getText().toString());
-            viewModel.vehicle_Year = Integer.parseInt(editText_Year.getText().toString());
+            distance = Integer.parseInt(editText_Distance.getText().toString());
+            passengers = Integer.parseInt(editText_Passengers.getText().toString());
+            year = Integer.parseInt(editText_Year.getText().toString());
 
             String fuelType = spinner_VehicleFuel.getSelectedItem().toString();
             switch(fuelType){
                 case("Gasoline"):
-                    viewModel.vehicle_FuelType = "gasoline";
+                    fuel = "gasoline";
                     break;
                 case("Diesel"):
-                    viewModel.vehicle_FuelType = "diesel";
+                    fuel = "diesel";
                     break;
                 case("Electricity"):
-                    viewModel.vehicle_FuelType = "electricity";
+                    fuel = "electricity";
                     break;
             }
 
             String vehicleSize = spinner_VehicleSize.getSelectedItem().toString();
             switch(vehicleSize){
                 case("Mini"):
-                    viewModel.vehicle_Size = "mini";
+                    size = "mini";
                     break;
                 case("Medium"):
-                    viewModel.vehicle_Size = "mediumFamily";
+                    size = "mediumFamily";
                     break;
                 case("Large"):
-                    viewModel.vehicle_Size = "large";
+                    size = "large";
                     break;
             }
             //If input is correct and thus testinput returns true, saving data
             if(testInput()){
-                returnIntent.putExtra("distance",Integer.parseInt(editText_Distance.getText().toString()));
-                returnIntent.putExtra("passengers",Integer.parseInt(editText_Passengers.getText().toString()));
-                returnIntent.putExtra("year",Integer.parseInt(editText_Year.getText().toString()));
-                returnIntent.putExtra("fuel",viewModel.vehicle_FuelType);
-                returnIntent.putExtra("size",viewModel.vehicle_Size);
+                vehicleData.vehicleResults(distance,passengers,year,fuel,size);
+                returnIntent.putExtra("fromActivity","vehicleActivity");
                 Toast.makeText(VehicleActivity.this, "Saved",Toast.LENGTH_SHORT).show();
-                setResult(1,returnIntent);
+                setResult(0,returnIntent);
                 finish();
             }
         }
@@ -96,26 +95,17 @@ public class VehicleActivity extends AppCompatActivity {
             Toast.makeText(VehicleActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
     }
-            //Getting intent extras to viewmodel
-    public void getIntentValues(){
-        Bundle extras = getIntent().getExtras();
-        viewModel.vehicle_Distance = extras.getInt("viewModel_Distance");
-        viewModel.vehicle_Passengers = extras.getInt("viewModel_Passengers");
-        viewModel.vehicle_Year = extras.getInt("viewModel_Year");
-        viewModel.vehicle_FuelType = extras.getString("viewModel_FuelType");
-        viewModel.vehicle_Size = extras.getString("viewModel_Size");
-    }
 
     public void setValuesToText(){
-        TextView distance = findViewById(R.id.textView_VehicleDistance);
-        distance.setText("Current: "+ viewModel.vehicle_Distance);
-        TextView passengers = findViewById(R.id.textView_VehiclePassengers);
-        passengers.setText("Current: "+ viewModel.vehicle_Passengers);
-        TextView year = findViewById(R.id.textView_VehicleYear);
-        year.setText("Current: "+ viewModel.vehicle_Year);
+        TextView textView_Distance = findViewById(R.id.textView_VehicleDistance);
+        textView_Distance.setText("Current: "+ vehicleData.getDistance());
+        TextView textView_Passengers = findViewById(R.id.textView_VehiclePassengers);
+        textView_Passengers.setText("Current: "+ vehicleData.getPassengers());
+        TextView textView_Year = findViewById(R.id.textView_VehicleYear);
+        textView_Year.setText("Current: "+ vehicleData.getYear());
 
         //Setting saved options to spinners
-        switch(viewModel.vehicle_FuelType){
+        switch(vehicleData.getFuel()){
             case("gasoline"):
                 spinner_VehicleFuel.setSelection(0);
                 break;
@@ -126,7 +116,7 @@ public class VehicleActivity extends AppCompatActivity {
                 spinner_VehicleFuel.setSelection(2);
                 break;
         }
-        switch(viewModel.vehicle_Size){
+        switch(vehicleData.getSize()){
             case("mini"):
                 spinner_VehicleSize.setSelection(0);
                 break;
@@ -141,15 +131,15 @@ public class VehicleActivity extends AppCompatActivity {
 
     //Used to test if input is in their set ranges
     public Boolean testInput(){
-        if((viewModel.vehicle_Year > 2030) || (viewModel.vehicle_Year < 1800)){
+        if((year > 2030) || (year < 1800)){
             Toast.makeText(VehicleActivity.this, "Year range is (1800 - 2030)",Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if((viewModel.vehicle_Passengers > 10) || (viewModel.vehicle_Passengers < 1)){
+        else if((passengers > 10) || (passengers < 1)){
             Toast.makeText(VehicleActivity.this, "Passenger range is (0 - 10)",Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if((viewModel.vehicle_Distance > 120000) || (viewModel.vehicle_Distance < 0)){
+        else if((distance > 120000) || (distance < 0)){
             Toast.makeText(VehicleActivity.this, "Distance range is (0 - 120 000)",Toast.LENGTH_SHORT).show();
             return false;
         }
