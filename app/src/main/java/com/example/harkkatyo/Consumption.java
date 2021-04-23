@@ -36,7 +36,7 @@ public class Consumption {
 
     public static Consumption getInstance(){ return consumption; }
 
-    public Consumption consumptionResults(int clothing, int communications, int electronics, int other, int paper, int recreation, int shoes){
+    public void consumptionResults(int clothing, int communications, int electronics, int other, int paper, int recreation, int shoes){
         this.clothing = clothing;
         this.communications = communications;
         this.electronics = electronics;
@@ -60,7 +60,6 @@ public class Consumption {
         }catch (NumberFormatException | JSONException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
-        return this;
     }
 
     public int getClothing(){ return clothing; }

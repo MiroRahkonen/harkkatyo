@@ -26,7 +26,7 @@ public class Vehicle {
 
     public static Vehicle getInstance(){ return vehicle; }
 
-    public double vehicleResults(int distance, int passengers, int year, String fuel, String size){
+    public void vehicleResults(int distance, int passengers, int year, String fuel, String size){
         this.distance = distance;
         this.passengers = passengers;
         this.year = year;
@@ -41,7 +41,6 @@ public class Vehicle {
         }catch (NumberFormatException | NullPointerException | IOException e) {
             e.printStackTrace();
         }
-        return vehicleResult;
     }
     public double getResult(){return vehicleResult;}
     public int getDistance(){return distance;}
