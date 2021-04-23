@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class Vehicle {
 
-    private static Vehicle vehicle = new Vehicle();
+    private static Vehicle vehicle;
 
     private double vehicleResult;
     private int distance;
@@ -24,7 +24,11 @@ public class Vehicle {
         size = "mini";
     }
 
-    public static Vehicle getInstance(){ return vehicle; }
+    public static Vehicle getInstance(){
+        if (vehicle == null){
+            vehicle = new Vehicle();
+        }
+        return vehicle; }
 
     public void vehicleResults(int distance, int passengers, int year, String fuel, String size){
         this.distance = distance;
