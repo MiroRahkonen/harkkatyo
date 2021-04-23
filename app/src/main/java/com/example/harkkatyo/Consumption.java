@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class Consumption {
-    private static Consumption consumption;
+    private static Consumption consumption = null;
 
     private double clothingResult;
     private double commResult;

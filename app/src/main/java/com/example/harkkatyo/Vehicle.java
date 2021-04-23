@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class Vehicle {
 
-    private static Vehicle vehicle;
+    private static Vehicle vehicle = null;
 
     private double vehicleResult;
     private int distance;

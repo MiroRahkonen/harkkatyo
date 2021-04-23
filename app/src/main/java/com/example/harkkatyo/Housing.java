@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Housing {
-    private static Housing housing;
+    private static Housing housing = null;
 
     private double housingResult;
     private int area;
