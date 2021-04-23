@@ -24,6 +24,7 @@ public class ConsumptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumption);
 
+        consumptionData = consumptionData.getInstance();
         viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         editText_Clothing = findViewById(R.id.editText_ConsumptionClothing);
         editText_Electronics = findViewById(R.id.editText_ConsumptionElectronics);
@@ -43,6 +44,7 @@ public class ConsumptionActivity extends AppCompatActivity {
             viewModel.consumption_Recreation = Integer.parseInt(editText_Recreation.getText().toString());
 
             if(testInput()){
+
                 returnIntent.putExtra("fromActivity","consumptionActivity");
                 returnIntent.putExtra("clothing",viewModel.consumption_Clothing);
                 returnIntent.putExtra("electronics",viewModel.consumption_Electronics);

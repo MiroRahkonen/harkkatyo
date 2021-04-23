@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.content_main);
 
         consumptionData = consumptionData.getInstance();
-        //housingData = housingData.getClass();
-        vehicleData.getInstance();
+        housingData = housingData.getInstance();
+        vehicleData = vehicleData.getInstance();
         //viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
         textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 int housingArea = data.getIntExtra("area", 0);
                 int housingResidents = data.getIntExtra("residents", 0);
                 String housingType = data.getStringExtra("type");
-
+                housingData = housingData.housingResults(housingArea,housingResidents,housingType);
 
                 viewModel.housing_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/HousingCalculator/InfrastructureEstimate?" +
                         "type="+viewModel.housing_Type+
