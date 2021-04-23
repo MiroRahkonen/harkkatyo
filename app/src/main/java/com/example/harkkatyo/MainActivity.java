@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
 
-        consumptionData = consumptionData.getInstance();
-        housingData = housingData.getInstance();
-        vehicleData = vehicleData.getInstance();
-        //viewModel = new ViewModelProvider(this).get(DataViewModel.class);
+        consumptionData = Consumption.getInstance();
+        housingData = Housing.getInstance();
+        vehicleData = Vehicle.getInstance();
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
         textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
         textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
@@ -105,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
                 int housingArea = data.getIntExtra("area", 0);
                 int housingResidents = data.getIntExtra("residents", 0);
                 String housingType = data.getStringExtra("type");
-                housingData = housingData.housingResults(housingArea,housingResidents,housingType);
+                /*housingData = housingData.housingResults(housingArea,housingResidents,housingType);
 
                 viewModel.housing_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/HousingCalculator/InfrastructureEstimate?" +
                         "type="+viewModel.housing_Type+
                         "&area="+viewModel.housing_Area+
                         "&residents="+viewModel.housing_Residents;
-                System.out.println(viewModel.housing_URL);
+                System.out.println(viewModel.housing_URL);*/
                 textView_HousingSaved.setText("Data saved");
                 housingSaved = true;
                 /*housingText.setText("Area: " + viewModel.housing_Area +
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 int vehicleYear = data.getIntExtra("year", 0);
                 String vehicleFuel = data.getStringExtra("fuel");
                 String vehicleSize = data.getStringExtra("size");
-                vehicleData.getVehicleResult(vehicleDistance,vehiclePassengers, vehicleYear, vehicleFuel, vehicleSize);
+                //vehicleData.getVehicleResult(vehicleDistance,vehiclePassengers, vehicleYear, vehicleFuel, vehicleSize);
                 textView_VehicleSaved.setText("Data saved");
                 vehicleSaved = true;
                 /*viewModel.vehicle_URL = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/TransportCalculator/CarEstimate?" +
