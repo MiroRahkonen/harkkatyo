@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class Consumption {
-    private static Consumption consumption = new Consumption();
+    private static Consumption consumption = null;
 
     private double clothingResult;
     private double commResult;
@@ -16,27 +16,32 @@ public class Consumption {
     private double recreationResult;
     private double shoesResult;
     private double consTotalResult;
-    private int clothing;
-    private int communications;
-    private int electronics;
-    private int other;
-    private int paper;
-    private int recreation;
-    private int shoes;
+    private int clothing = 1;
+    private int communications = 2;
+    private int electronics = 3;
+    private int other = 4;
+    private int paper = 5;
+    private int recreation = 6;
+    private int shoes = 7;
+    private String urlString;
 
     private Consumption(){
-        clothing = 0;
+        /*clothing = 0;
         communications = 0;
         electronics = 0;
         other = 0;
         paper = 0;
         recreation = 0;
-        shoes = 0;
+        shoes = 0;*/
     }
 
-    public static Consumption getInstance(){ return consumption; }
+    public static Consumption getInstance(){
+        if (consumption == null){
+            consumption = new Consumption();
+        }
+        return consumption; }
 
-    public Consumption consumptionResults(int clothing, int communications, int electronics, int other, int paper, int recreation, int shoes){
+    public void consumptionResults(int clothing, int communications, int electronics, int other, int paper, int recreation, int shoes){
         this.clothing = clothing;
         this.communications = communications;
         this.electronics = electronics;
@@ -45,7 +50,7 @@ public class Consumption {
         this.recreation = recreation;
         this.shoes = shoes;
         try {
-            String urlString = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?query.clothing=" + clothing + "&query.communications=" + communications + "&query.electronics=" + electronics + "&query.other=" + other + "&query.paper=" + paper + "&query.recreation=" + recreation + "&query.shoes=" + shoes;
+            urlString = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/ConsumptionCalculator?query.clothing=" + clothing + "&query.communications=" + communications + "&query.electronics=" + electronics + "&query.other=" + other + "&query.paper=" + paper + "&query.recreation=" + recreation + "&query.shoes=" + shoes;
             System.out.println(urlString);
             JSONObject object = JsonApi.newInstance().getJson(urlString);
             clothingResult = object.getDouble("Clothing");
@@ -60,7 +65,6 @@ public class Consumption {
         }catch (NumberFormatException | JSONException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
-        return this;
     }
 
     public int getClothing(){ return clothing; }
@@ -78,4 +82,5 @@ public class Consumption {
     public double getRecreationResult(){ return recreationResult; }
     public double getShoesResult(){ return shoesResult; }
     public double getConsumptionTotal(){ return consTotalResult; }
+    public String getURL(){return urlString;}
 }

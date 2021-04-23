@@ -16,14 +16,16 @@ public class ConsumptionActivity extends AppCompatActivity {
     EditText editText_Electronics;
     EditText editText_Paper;
     EditText editText_Recreation;
-    private DataViewModel viewModel;
+    DataViewModel viewModel;
+    protected Consumption consumptionData;
+    int clothing,electronics,paper,recreation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumption);
 
-        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
+        consumptionData = Consumption.getInstance();
         editText_Clothing = findViewById(R.id.editText_ConsumptionClothing);
         editText_Electronics = findViewById(R.id.editText_ConsumptionElectronics);
         editText_Paper = findViewById(R.id.editText_ConsumptionPaper);
@@ -36,17 +38,18 @@ public class ConsumptionActivity extends AppCompatActivity {
 
         try{        /*Getting data from edittexts to viewmodel*/
             Intent returnIntent = new Intent();
-            viewModel.consumption_Clothing = Integer.parseInt(editText_Clothing.getText().toString());
-            viewModel.consumption_Electronics = Integer.parseInt(editText_Electronics.getText().toString());
-            viewModel.consumption_Paper = Integer.parseInt(editText_Paper.getText().toString());
-            viewModel.consumption_Recreation = Integer.parseInt(editText_Recreation.getText().toString());
+            clothing = Integer.parseInt(editText_Clothing.getText().toString());
+            electronics = Integer.parseInt(editText_Electronics.getText().toString());
+            paper = Integer.parseInt(editText_Paper.getText().toString());
+            recreation = Integer.parseInt(editText_Recreation.getText().toString());
 
             if(testInput()){
+                consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
                 returnIntent.putExtra("fromActivity","consumptionActivity");
-                returnIntent.putExtra("clothing",viewModel.consumption_Clothing);
+                /*returnIntent.putExtra("clothing",viewModel.consumption_Clothing);
                 returnIntent.putExtra("electronics",viewModel.consumption_Electronics);
                 returnIntent.putExtra("paper",viewModel.consumption_Paper);
-                returnIntent.putExtra("recreation",viewModel.consumption_Recreation);
+                returnIntent.putExtra("recreation",viewModel.consumption_Recreation);*/
                 Toast.makeText(ConsumptionActivity.this, "Saved",Toast.LENGTH_SHORT).show();
                 setResult(1,returnIntent);
                 finish();
@@ -59,37 +62,37 @@ public class ConsumptionActivity extends AppCompatActivity {
 
     public void getIntentValues(){
         Bundle extras = getIntent().getExtras();
-        viewModel.consumption_Clothing= extras.getInt("viewModel_Clothing");
+        /*viewModel.consumption_Clothing = extras.getInt("viewModel_Clothing");
         viewModel.consumption_Electronics = extras.getInt("viewModel_Electronics");
         viewModel.consumption_Paper = extras.getInt("viewModel_Paper");
-        viewModel.consumption_Recreation = extras.getInt("viewModel_Recreation");
+        viewModel.consumption_Recreation = extras.getInt("viewModel_Recreation");*/
     }
 
     public void setValuesToText(){
         TextView clothing = findViewById(R.id.textView_ConsumptionClothing);
-        clothing.setText("Current: "+ viewModel.consumption_Clothing);
+        clothing.setText("Current: "+ consumptionData.getClothing());
         TextView electronics = findViewById(R.id.textView_ConsumptionElectronics);
-        electronics.setText("Current: "+ viewModel.consumption_Electronics);
+        electronics.setText("Current: "+ consumptionData.getElectronics());
         TextView paper = findViewById(R.id.textView_ConsumptionPaper);
-        paper.setText("Current: "+ viewModel.consumption_Paper);
+        paper.setText("Current: "+ consumptionData.getPaper());
         TextView recreation = findViewById(R.id.textView_ConsumptionRecreation);
-        recreation.setText("Current: "+ viewModel.consumption_Recreation);
+        recreation.setText("Current: "+ consumptionData.getRecreation());
     }
 
     public Boolean testInput(){
-        if((viewModel.consumption_Clothing > 1000) || (viewModel.consumption_Clothing < 0)){
+        if((clothing > 1000) || (clothing < 0)){
             Toast.makeText(ConsumptionActivity.this, "Clothing range is (0 - 1000)",Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if((viewModel.consumption_Electronics > 1000) || (viewModel.consumption_Electronics < 0)){
+        else if((electronics > 1000) || (electronics < 0)){
             Toast.makeText(ConsumptionActivity.this, "Electronics range is (0 - 1000)",Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if((viewModel.consumption_Paper > 1000) || (viewModel.consumption_Paper < 0)){
+        else if((paper > 1000) || (paper < 0)){
             Toast.makeText(ConsumptionActivity.this, "Paper range is (0 - 1000)",Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if((viewModel.consumption_Recreation > 5000) || (viewModel.consumption_Recreation < 0)){
+        else if((recreation > 5000) || (recreation < 0)){
             Toast.makeText(ConsumptionActivity.this, "Recreation range is (0 - 5000)",Toast.LENGTH_SHORT).show();
             return false;
         }

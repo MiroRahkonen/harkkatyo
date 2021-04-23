@@ -1,7 +1,5 @@
 package com.example.harkkatyo;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Housing {
-    private static Housing housing = new Housing();
+    private static Housing housing = null;
 
     private double housingResult;
     private int area;
@@ -23,9 +21,13 @@ public class Housing {
         type = "flat";
     }
 
-    public static Housing getInstance(){return housing;}
+    public static Housing getInstance(){
+        if (housing == null){
+            housing = new Housing();
+        }
+        return housing;}
 
-    public double housingResults(int area, int residents, String type){
+    public void housingResults(int area, int residents, String type){
         this.area = area;
         this.residents = residents;
         this.type = type;
@@ -39,7 +41,6 @@ public class Housing {
         }catch (NumberFormatException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
-        return housingResult;
     }
 
     public double getResult() { return housingResult; }

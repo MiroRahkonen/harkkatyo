@@ -25,7 +25,6 @@ public class HousingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_housing);
 
-        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
         spinner_HouseType = findViewById(R.id.spinner_HouseType);
         ArrayAdapter<String> adapter_HouseType = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,HouseTypes);
         adapter_HouseType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
