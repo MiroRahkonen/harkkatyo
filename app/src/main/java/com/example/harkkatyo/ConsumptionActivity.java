@@ -17,7 +17,7 @@ public class ConsumptionActivity extends AppCompatActivity {
     EditText editText_Paper;
     EditText editText_Recreation;
     DataViewModel viewModel;
-    private Consumption consumptionData;
+    protected Consumption consumptionData;
     int clothing,electronics,paper,recreation;
 
     @Override
@@ -44,7 +44,7 @@ public class ConsumptionActivity extends AppCompatActivity {
             recreation = Integer.parseInt(editText_Recreation.getText().toString());
 
             if(testInput()){
-                consumptionData = consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
+                consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
                 returnIntent.putExtra("fromActivity","consumptionActivity");
                 /*returnIntent.putExtra("clothing",viewModel.consumption_Clothing);
                 returnIntent.putExtra("electronics",viewModel.consumption_Electronics);
