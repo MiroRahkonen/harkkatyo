@@ -16,7 +16,13 @@ public class Vehicle {
     private String fuel;
     private String size;
 
-    private Vehicle(){}
+    private Vehicle(){
+        distance = 0;
+        passengers = 0;
+        year = 0;
+        fuel = "gasoline";
+        size = "mini";
+    }
 
     public static Vehicle getInstance(){ return vehicle; }
 
