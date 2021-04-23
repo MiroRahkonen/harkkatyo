@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class Consumption {
-    private static Consumption consumption = new Consumption();
+    private static Consumption consumption = null;
 
     private double clothingResult;
     private double commResult;
@@ -35,7 +35,11 @@ public class Consumption {
         shoes = 0;
     }
 
-    public static Consumption getInstance(){ return consumption; }
+    public static Consumption getInstance(){
+        if (consumption == null){
+            consumption = new Consumption();
+        }
+        return consumption; }
 
     public void consumptionResults(int clothing, int communications, int electronics, int other, int paper, int recreation, int shoes){
         this.clothing = clothing;

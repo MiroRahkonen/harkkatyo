@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Co2 App</string>
+    <string name="app_name">harkkatyo</string>
+    <string name="login_name">Co2 App</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
