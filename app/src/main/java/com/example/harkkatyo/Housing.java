@@ -1,7 +1,5 @@
 package com.example.harkkatyo;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,12 +23,12 @@ public class Housing {
 
     public static Housing getInstance(){return housing;}
 
-    public double housingResults(int area, int residents, String type){
+    public void housingResults(int area, int residents, String type){
         this.area = area;
         this.residents = residents;
         this.type = type;
         try {
-            String urlString = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/HousingCalculator/InfrastructureEstimate?type=flat&area=35&residents=1";
+            String urlString = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/HousingCalculator/InfrastructureEstimate?type=" + type + "&area=" + area + "&residents=" + residents;
             System.out.println(urlString);
             InputStream input = JsonApi.newInstance().getInput(urlString);
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -39,7 +37,6 @@ public class Housing {
         }catch (NumberFormatException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
-        return housingResult;
     }
 
     public double getResult() { return housingResult; }

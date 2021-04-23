@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">harkkatyo</string>
+    <string name="app_name">Co2 App</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -24,4 +24,27 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="consumption_preferences">Consumption preferences</string>
+    <string name="consumption_clothing">Clothing(eur/month):</string>
+    <string name="consumption_electronics">Electronics(eur/month):</string>
+    <string name="consumption_paper">Paper(eur/month):</string>
+    <string name="consumption_recreation">Recreation(eur/month):</string>
+    <string name="save_changes">Save changes</string>
+    <string name="cancel">cancel</string>
+    <string name="range_0_1000">Range: 0 - 1000</string>
+    <string name="range_0_5000">Range: 0 - 5000</string>
+    <string name="currently">Currently:</string>
+    <string name="housing_preferences">Housing preferences</string>
+    <string name="housing_type">Housing type:</string>
+    <string name="housing_area">Area(m²):</string>
+    <string name="housing_residents">Residents:</string>
+    <string name="housing_range">Range: 1 - ∞</string>
+    <string name="email">Email</string>
+    <string name="account">Account</string>
+    <string name="no_account">Dont have a account? Register here</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="new_account">Create a new Account</string>
+    <string name="confirm">Confirm</string>
 </resources>

@@ -17,20 +17,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.opencsv.CSVWriter;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText editText_EmailAddress2, editText_Password;
+    EditText editText_EmailAddress2, editText_Password, editTextTextPersonName;
     Button button_confirm, button_return;
     TextView textView2, textView3;
-    Boolean check1, check2;
+    Boolean check1, check2, check3;
     private FirebaseAuth mAuth;
+    FirebaseDatabase root;
+    DatabaseReference ref;
 
 
     @Override
@@ -46,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         editText_Password = (EditText) findViewById(R.id.editText_RegisterPassword);
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
+        editTextTextPersonName = (EditText) findViewById(R.id.editTextTextPersonName);
 
         //Return back to LoginActivity
         button_return.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +66,8 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 check1 = checkEmail();
                 check2 = checkPassword();
-                if (check1 && check2 == true) { //Check if email and password are good
+                check3 = checkName();
+                if (check1 && check2 && check3 == true) { //Check if email and password are good
                     //Create new account
                     saveAccount();
 
@@ -92,6 +98,17 @@ public class RegisterActivity extends AppCompatActivity {
             return true;
         }
     }
+    //Check name
+    private Boolean checkName() {
+        String test = editTextTextPersonName.getText().toString();
+        if (test.isEmpty()) {
+            editText_Password.setError("You have to give password");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     //Check if user has given password and if it meets the requirements
     private Boolean checkPassword() {
         String test = editText_Password.getText().toString();
@@ -112,10 +129,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Creates new Account
     public void saveAccount(){
+        String name = editTextTextPersonName.getText().toString();
         String email1 = editText_EmailAddress2.getText().toString();
         String password1 = editText_Password.getText().toString();
         //Create Firebase account
-        createUser(email1, password1);
+        createUser(email1, password1, name);
 
 
 
@@ -130,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
     }*/
 
     //Creates new account in Firebase database and check if succesful
-    public void createUser(String email, String password) {
+    public void createUser(String email, String password, String name) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -143,6 +161,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        //Store info in database
+                                        root = FirebaseDatabase.getInstance();
+                                        ref = root.getReference("userinfo");
+                                        ref.child(name).setValue(d1);
                                         Toast.makeText(RegisterActivity.this, "New Account Created",Toast.LENGTH_LONG).show();
                                         finish();
                                     }
@@ -161,6 +183,14 @@ public class RegisterActivity extends AppCompatActivity {
                 });
 
     }
+
+    /*public void createDatabase() {
+        root = FirebaseDatabase.getInstance();
+        ref = root.getReference("userinfo");
+
+        ref.child()
+
+    }*/
 
 
 }
