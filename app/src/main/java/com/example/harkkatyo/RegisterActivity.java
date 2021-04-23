@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-    //Check if user has given email address
+    //Check if user has given valid email address
     private Boolean checkEmail() {
         String test = editText_EmailAddress2.getText().toString();
 
@@ -117,19 +117,17 @@ public class RegisterActivity extends AppCompatActivity {
         //Create Firebase account
         createUser(email1, password1);
 
-        //Switch to main Activity
-        Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-        startActivity(intent);
+
 
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
-    }
+    }*/
 
     //Creates new account in Firebase database and check if succesful
     public void createUser(String email, String password) {
@@ -146,6 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, "New Account Created",Toast.LENGTH_LONG).show();
+                                        finish();
                                     }
                                     else {
                                         Toast.makeText(RegisterActivity.this, "Account creation failed",Toast.LENGTH_SHORT).show();
@@ -162,6 +161,6 @@ public class RegisterActivity extends AppCompatActivity {
                 });
 
     }
-    
+
 
 }
