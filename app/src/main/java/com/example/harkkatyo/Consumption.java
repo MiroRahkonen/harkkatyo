@@ -25,7 +25,15 @@ public class Consumption {
     private int shoes;
     private String urlString;
 
-    private Consumption(){}
+    private Consumption(){
+        clothing = 0;
+        communications = 0;
+        electronics = 0;
+        other = 0;
+        paper = 0;
+        recreation = 0;
+        shoes = 0;
+    }
 
     public static Consumption getInstance(){ return consumption; }
 
@@ -56,13 +64,20 @@ public class Consumption {
         return this;
     }
 
-    public double getClothing(){ return clothingResult; }
-    public double getCommunications(){ return commResult; }
-    public double getElectronics(){ return electronicsResult; }
-    public double getPaper(){ return paperResult; }
-    public double getConsumptionOther(){ return consOtherResult; }
-    public double getRecreation(){ return recreationResult; }
-    public double getShoes(){ return shoesResult; }
+    public int getClothing(){ return clothing; }
+    public int getCommunications(){ return communications; }
+    public int getElectronics(){ return electronics; }
+    public int getPaper(){ return paper; }
+    public int getConsumptionOther(){ return other; }
+    public int getRecreation(){ return recreation; }
+    public int getShoes(){ return shoes; }
+    public double getClothingResult(){ return clothingResult; }
+    public double getCommunicationsResult(){ return commResult; }
+    public double getElectronicsResult(){ return electronicsResult; }
+    public double getPaperResult(){ return paperResult; }
+    public double getConsumptionOtherResult(){ return consOtherResult; }
+    public double getRecreationResult(){ return recreationResult; }
+    public double getShoesResult(){ return shoesResult; }
     public double getConsumptionTotal(){ return consTotalResult; }
     public String getURL(){return urlString;}
 }

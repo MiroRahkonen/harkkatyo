@@ -37,4 +37,10 @@ public class Vehicle {
         }
         return vehicleResult;
     }
+    public double getResult(){return vehicleResult;}
+    public int getDistance(){return distance;}
+    public int getYear(){return year;}
+    public int getPassengers(){return passengers;}
+    public String getFuel(){return fuel;}
+    public String getSize(){return size;}
 }
