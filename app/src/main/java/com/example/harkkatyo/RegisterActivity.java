@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 import com.opencsv.CSVWriter;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     Boolean check1, check2, check3;
     private FirebaseAuth mAuth;
     FirebaseDatabase root;
-    DatabaseReference ref;
+    //DatabaseReference ref;
 
 
     @Override
@@ -42,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+
 
 
         button_confirm = (Button) findViewById(R.id.button_LoginButton);
@@ -161,8 +163,11 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Account d1 = new Account(email, password, name);
                             //Create new user in firebase and link it to account
+
                             System.out.println("Toimii************************************************************************************************************************************************************************");
-                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(d1);
+                            root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+                            root.setLogLevel(Logger.Level.DEBUG);
+                            root.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(d1);
                             //Store info in database
                             /*root = FirebaseDatabase.getInstance();
                             ref = root.getReference("testi");
@@ -186,13 +191,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void createDatabase(String email, String password, String name) {
+    /*public void createDatabase(String email, String password, String name) {
         //Store info in database
         root = FirebaseDatabase.getInstance();
         ref = root.getReference("testi");
         ref.setValue("kukkuluuruu");
 
-    }
+    }*/
 
 
 }
