@@ -52,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                 check1 = checkEmail1();
                 check2 = checkPassword1();
                 if (check1 && check2 == true) {
-                    loginUser(email, password);
+                    //loginUser(email, password);
+                    goToMain();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "Insufficient information",Toast.LENGTH_LONG).show();
@@ -108,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Login user in firebase database
-    private void loginUser(String email1, String password1) {
+    /*private void loginUser(String email1, String password1) {
         mAuth.signInWithEmailAndPassword(email1, password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -122,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
     private Boolean checkEmail1() {
         String test = editText_EmailAddress.getText().toString();
