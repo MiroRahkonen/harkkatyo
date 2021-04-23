@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DataViewModel viewModel;
     TextView textView_ConsumptionSaved, textView_HousingSaved, textView_VehicleSaved;
+    private Boolean consumptionSaved = false, housingSaved = false, vehicleSaved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         "&query.recreation="+viewModel.consumption_Recreation;
                 System.out.println(viewModel.consumption_URL);
                 textView_ConsumptionSaved.setText("Data saved");
+                consumptionSaved = true;
                 /*consumptionText.setText("Clothing: " + viewModel.consumption_Clothing +
                         "\nElectronics: " + viewModel.consumption_Electronics +
                         "\nPaper: " + viewModel.consumption_Paper +
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         "&residents="+viewModel.housing_Residents;
                 System.out.println(viewModel.housing_URL);
                 textView_HousingSaved.setText("Data saved");
+                housingSaved = true;
                 /*housingText.setText("Area: " + viewModel.housing_Area +
                         "\nResidents: " + viewModel.housing_Residents +
                         "\nHouse type: " + viewModel.housing_Type);*/
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         "&query.passengerCount="+viewModel.vehicle_Passengers;
                 System.out.println(viewModel.vehicle_URL);
                 textView_VehicleSaved.setText("Data saved");
+                vehicleSaved = true;
                 /*vehicleText.setText("Distance: " + viewModel.vehicle_Distance +
                         "\nPassengers: " + viewModel.vehicle_Passengers +
                         "\nYear: " + viewModel.vehicle_Year +
@@ -131,20 +135,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createSummary(View v){
-        String consumptionText = textView_ConsumptionSaved.getText().toString();
-        String housingText = textView_HousingSaved.getText().toString();
-        String vehicleText = textView_VehicleSaved.getText().toString();
-        System.out.println(consumptionText);
-        System.out.println(housingText);
-        System.out.println(vehicleText);
         //Testing if all data has been saved
-        if(consumptionText != "Data saved"){
+        if(consumptionSaved == false){
             Toast.makeText(MainActivity.this, "Consumption information missing",Toast.LENGTH_SHORT).show();
         }
-        else if (housingText != "Data saved"){
+        else if (housingSaved == false){
             Toast.makeText(MainActivity.this, "Housing information missing",Toast.LENGTH_SHORT).show();
         }
-        else if(vehicleText != "Data saved"){
+        else if(vehicleSaved == false){
             Toast.makeText(MainActivity.this, "Vehicle information missing",Toast.LENGTH_SHORT).show();
         }
         else{
