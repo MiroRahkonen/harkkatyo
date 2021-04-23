@@ -16,7 +16,6 @@ public class ConsumptionActivity extends AppCompatActivity {
     EditText editText_Electronics;
     EditText editText_Paper;
     EditText editText_Recreation;
-    DataViewModel viewModel;
     protected Consumption consumptionData;
     int clothing,electronics,paper,recreation;
 
@@ -30,7 +29,6 @@ public class ConsumptionActivity extends AppCompatActivity {
         editText_Electronics = findViewById(R.id.editText_ConsumptionElectronics);
         editText_Paper = findViewById(R.id.editText_ConsumptionPaper);
         editText_Recreation = findViewById(R.id.editText_ConsumptionRecreation);
-        getIntentValues();
         setValuesToText();
     }
 
@@ -46,26 +44,14 @@ public class ConsumptionActivity extends AppCompatActivity {
             if(testInput()){
                 consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
                 returnIntent.putExtra("fromActivity","consumptionActivity");
-                /*returnIntent.putExtra("clothing",viewModel.consumption_Clothing);
-                returnIntent.putExtra("electronics",viewModel.consumption_Electronics);
-                returnIntent.putExtra("paper",viewModel.consumption_Paper);
-                returnIntent.putExtra("recreation",viewModel.consumption_Recreation);*/
                 Toast.makeText(ConsumptionActivity.this, "Saved",Toast.LENGTH_SHORT).show();
-                setResult(1,returnIntent);
+                setResult(0,returnIntent);
                 finish();
             }
         }
         catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
             Toast.makeText(ConsumptionActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void getIntentValues(){
-        Bundle extras = getIntent().getExtras();
-        /*viewModel.consumption_Clothing = extras.getInt("viewModel_Clothing");
-        viewModel.consumption_Electronics = extras.getInt("viewModel_Electronics");
-        viewModel.consumption_Paper = extras.getInt("viewModel_Paper");
-        viewModel.consumption_Recreation = extras.getInt("viewModel_Recreation");*/
     }
 
     public void setValuesToText(){
