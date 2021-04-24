@@ -59,6 +59,8 @@ public class HousingActivity extends AppCompatActivity {
             }
             if(testInput()){
                 housingData.housingResults(area,residents,type);
+                DatabaseHandler handler = new DatabaseHandler();
+                handler.baseWriteHousing();
                 returnIntent.putExtra("fromActivity","housingActivity");
                 Toast.makeText(HousingActivity.this, "Saved",Toast.LENGTH_SHORT).show();
                 setResult(1,returnIntent);

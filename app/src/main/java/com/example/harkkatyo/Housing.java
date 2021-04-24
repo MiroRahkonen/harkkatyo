@@ -20,6 +20,9 @@ public class Housing {
         residents = 0;
         type = "flat";
     }
+    //Test
+
+
 
     public static Housing getInstance(){
         if (housing == null){

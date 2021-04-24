@@ -43,6 +43,8 @@ public class ConsumptionActivity extends AppCompatActivity {
 
             if(testInput()){
                 consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
+                DatabaseHandler handler = new DatabaseHandler();
+                handler.baseWriteConsumption();
                 returnIntent.putExtra("fromActivity","consumptionActivity");
                 Toast.makeText(ConsumptionActivity.this, "Saved",Toast.LENGTH_SHORT).show();
                 setResult(0,returnIntent);
