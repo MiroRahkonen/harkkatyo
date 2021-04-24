@@ -48,4 +48,13 @@
     <string name="login">Login</string>
     <string name="new_account">Create a new Account</string>
     <string name="confirm">Confirm</string>
+    <string name="summary">Summary</string>
+    <string name="name">Name</string>
+    <string name="save_data_to_file">(Save data to file)</string>
+    <string name="vehicle_preferences">Vehicle preferences</string>
+    <string name="vehicle_fuel_type">Fuel type:</string>
+    <string name="vehicle_year">Build year:</string>
+    <string name="vehicle_size">Size:</string>
+    <string name="vehicle_passengers">Passengers:</string>
+    <string name="consumption_summary_total">Consumption summary total</string>
 </resources>

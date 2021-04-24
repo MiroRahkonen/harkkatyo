@@ -17,9 +17,10 @@ public class Vehicle {
     private String size;
 
     private Vehicle(){
+        vehicleResult = 0;
         distance = 0;
-        passengers = 0;
-        year = 0;
+        passengers = 1;
+        year = 1990;
         fuel = "gasoline";
         size = "mini";
     }

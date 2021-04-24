@@ -16,16 +16,33 @@ public class Consumption {
     private double recreationResult;
     private double shoesResult;
     private double consTotalResult;
-    private int clothing = 0;
-    private int communications = 0;
-    private int electronics = 0;
-    private int other = 0;
-    private int paper = 0;
-    private int recreation = 0;
-    private int shoes = 0;
+    private int clothing;
+    private int communications;
+    private int electronics;
+    private int other;
+    private int paper;
+    private int recreation;
+    private int shoes;
     private String urlString;
 
-    private Consumption(){}
+    private Consumption(){
+        clothingResult = 0;
+        commResult = 0;
+        electronicsResult = 0;
+        paperResult = 0;
+        consOtherResult = 0;
+        recreationResult = 0;
+        shoesResult = 0;
+        consTotalResult = 0;
+        clothing = 0;
+        communications = 0;
+        electronics = 0;
+        other = 0;
+        paper = 0;
+        recreation = 0;
+        shoes = 0;
+        urlString = "";
+    }
 
     public static Consumption getInstance(){
         if (consumption == null){
