@@ -89,21 +89,20 @@ public class MainActivity extends AppCompatActivity {
         //Saving to different variables based on the activity
         switch (fromActivity) {
             case ("consumptionActivity"):
-                System.out.println(consumptionData.getURL());
-                textView_ConsumptionSaved.setText("Data saved");
-                textView_ConsumptionSaved.setTextColor(Color.BLACK);
+                //textView_ConsumptionSaved.setText("Data saved");
+                //textView_ConsumptionSaved.setTextColor(Color.BLACK);
                 consumptionSaved = true;
                 break;
 
             case ("housingActivity"):
-                textView_HousingSaved.setText("Data saved");
-                textView_HousingSaved.setTextColor(Color.BLACK);
+                //textView_HousingSaved.setText("Data saved");
+                //textView_HousingSaved.setTextColor(Color.BLACK);
                 housingSaved = true;
                 break;
 
             case ("vehicleActivity"):
-                textView_VehicleSaved.setText("Data saved");
-                textView_VehicleSaved.setTextColor(Color.BLACK);
+                //textView_VehicleSaved.setText("Data saved");
+                //textView_VehicleSaved.setTextColor(Color.BLACK);
                 vehicleSaved = true;
                 break;
         }
