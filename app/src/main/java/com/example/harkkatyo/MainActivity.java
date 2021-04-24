@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        DatabaseHandler handler = new DatabaseHandler();
+        handler.baseReadHousing();
 
         consumptionData = Consumption.getInstance();
         housingData = Housing.getInstance();

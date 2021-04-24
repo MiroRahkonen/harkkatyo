@@ -3,6 +3,7 @@ package com.example.harkkatyo;
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +36,11 @@ public class DatabaseHandler {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     //list.add(dataSnapshot.getValue().toString());
-                    System.out.println(dataSnapshot.toString());
+                    //System.out.println(dataSnapshot.toString());
+                    String result = dataSnapshot.child("result").getValue(String.class);
+                    System.out.println("***************************************THIS IS THE RESULT");
+                    System.out.println(result);
+                    //System.out.println(dataSnapshot.getValue());
                 }
             }
 
@@ -47,12 +52,54 @@ public class DatabaseHandler {
         });
     }
 
-    public void bseWriteSummary() {
+    public void baseWriteSummary() {
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("summary").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ref.setValue("hohoi");
 
     }
+    public void baseReadHousing() {
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //ref = root.getReference();
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //DatabaseReference ref_result =
+                list.clear();
+                /*if (snapshot.exists()) {
+                    //int result = snapshot.child("housing").child("result").getValue(Integer.class);
+                    //Housing housing = snapshot.getValue(Housing.class);
+                    //System.out.println("TESTIII" + housing.getResult());
+
+                    System.out.println(snapshot.toString());
+                    System.out.println("Väli");
+                    //String result = snapshot.child((FirebaseAuth.getInstance().getCurrentUser()).ch
+                    //System.out.println(result);
+
+                }*/
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    System.out.println(dataSnapshot);
+                    //list.add(dataSnapshot.getValue().toString());
+                    //System.out.println(dataSnapshot.toString());
+                    String result = snapshot.child("result").getValue(Double.class).toString();
+                    System.out.println("***************************************THIS IS THE RESULT");
+                    System.out.println(result);
+                    //System.out.println("********************************************************************************************************************");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Reading cancelled");
+
+            }
+        });
+
+
+    }
+
     public void baseWriteHousing() {
         Housing housing = Housing.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
