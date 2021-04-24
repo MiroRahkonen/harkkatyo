@@ -85,6 +85,8 @@ public class VehicleActivity extends AppCompatActivity {
             //If input is correct and thus testinput returns true, saving data
             if(testInput()){
                 vehicleData.vehicleResults(distance,passengers,year,fuel,size);
+                DatabaseHandler handler = new DatabaseHandler();
+                handler.baseWriteHousing();
                 returnIntent.putExtra("fromActivity","vehicleActivity");
                 Toast.makeText(VehicleActivity.this, "Vehicle data saved",Toast.LENGTH_SHORT).show();
                 setResult(0,returnIntent);

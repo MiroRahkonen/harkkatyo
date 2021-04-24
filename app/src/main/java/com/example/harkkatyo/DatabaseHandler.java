@@ -53,6 +53,30 @@ public class DatabaseHandler {
         ref.setValue("hohoi");
 
     }
+    public void baseWriteHousing() {
+        Housing housing = Housing.getInstance();
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.setValue(housing);
+
+    }
+
+    public void baseWriteVehicle() {
+        Vehicle vehicle = Vehicle.getInstance();
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("vehicle").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.setValue(vehicle);
+
+    }
+
+    public void baseWriteConsumption() {
+        Consumption consumption = Consumption.getInstance();
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("consumption").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.setValue(consumption);
+
+    }
+
 
 
 
