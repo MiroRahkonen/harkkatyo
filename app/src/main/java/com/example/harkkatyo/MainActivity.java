@@ -172,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String result = snapshot.child("result").getValue(Double.class).toString();
+                    String result = snapshot.child("consumptionTotal").getValue(Double.class).toString();
                     System.out.println(result);
-                    textView_VehicleSaved.setText(result);
+                    textView_ConsumptionSaved.setText(result);
                 }
             }
 
