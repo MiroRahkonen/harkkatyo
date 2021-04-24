@@ -18,74 +18,122 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView_VehicleSaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:text="Not saved"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_MainGotoVehicle" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_MainSummary"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
 
-    <TextView
-        android:id="@+id/textView_ConsumptionSaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:text="Not saved"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_MainGotoConsumption" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView_HousingSaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:text="Not saved"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_MainGotoHousing" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_MainGotoConsumption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="120dp"
-        android:backgroundTint="@color/green"
-        android:drawableLeft="@drawable/ic_consumption_icon"
-        android:onClick="gotoConsumption"
-        android:text="Consumption info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_MainGotoHousing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="92dp"
-        android:backgroundTint="@color/green"
-        android:drawableLeft="@drawable/ic_housing_icon"
-        android:onClick="gotoHousing"
-        android:text="House info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_MainGotoConsumption" />
+                    <Button
+                        android:id="@+id/button_MainGotoConsumption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginVertical="50dp"
+                        android:backgroundTint="@color/green"
+                        android:drawableLeft="@drawable/ic_consumption_icon"
+                        android:onClick="gotoConsumption"
+                        android:text="Consumption info"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_MainGotoVehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="92dp"
-        android:backgroundTint="@color/green"
-        android:drawableLeft="@drawable/ic_vehicle_icon"
-        android:onClick="gotoVehicle"
-        android:text="Car info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_MainGotoHousing" />
+                    <TextView
+                        android:id="@+id/textView_ConsumptionSaved"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not saved"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintStart_toEndOf="@+id/button_MainGotoConsumption"
+                        app:layout_constraintTop_toTopOf="@+id/button_MainGotoConsumption" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/button_MainGotoHousing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginVertical="50dp"
+                        android:backgroundTint="@color/green"
+                        android:drawableLeft="@drawable/ic_housing_icon"
+                        android:onClick="gotoHousing"
+                        android:text="House info"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView_HousingSaved"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not saved"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintStart_toEndOf="@+id/button_MainGotoHousing"
+                        app:layout_constraintTop_toTopOf="@+id/button_MainGotoHousing" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/button_MainGotoVehicle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginVertical="50dp"
+                        android:backgroundTint="@color/green"
+                        android:drawableLeft="@drawable/ic_vehicle_icon"
+                        android:onClick="gotoVehicle"
+                        android:text="Car info"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView_VehicleSaved"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not saved"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintStart_toEndOf="@+id/button_MainGotoVehicle"
+                        app:layout_constraintTop_toTopOf="@+id/button_MainGotoVehicle" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button_MainSummary"
