@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
         textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
         textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
+        textView_ConsumptionSaved.setTextColor(Color.RED);
+        textView_HousingSaved.setTextColor(Color.RED);
+        textView_VehicleSaved.setTextColor(Color.RED);
     }
 
     protected void onResume() {
@@ -67,46 +70,33 @@ public class MainActivity extends AppCompatActivity {
             case ("consumptionActivity"):
                 System.out.println(consumptionData.getURL());
                 textView_ConsumptionSaved.setText("Data saved");
+                textView_ConsumptionSaved.setTextColor(Color.BLACK);
                 consumptionSaved = true;
                 break;
 
             case ("housingActivity"):
                 textView_HousingSaved.setText("Data saved");
+                textView_HousingSaved.setTextColor(Color.BLACK);
                 housingSaved = true;
                 break;
 
             case ("vehicleActivity"):
                 textView_VehicleSaved.setText("Data saved");
+                textView_VehicleSaved.setTextColor(Color.BLACK);
                 vehicleSaved = true;
                 break;
         }
     }
 
-    public void createSummary(View v) throws InterruptedException {
+    public void createSummary(View v){
         //Testing if all data has been saved
-        Boolean save = true;
-        if (consumptionSaved == false) {
-            textView_ConsumptionSaved.setTextColor(Color.RED);
-            save = false;
-        }
-        if (housingSaved == false) {
-            textView_HousingSaved.setTextColor(Color.RED);
-            save = false;
-        }
-        if (vehicleSaved == false) {
-            textView_VehicleSaved.setTextColor(Color.RED);
-            save = false;
-        }
-        if (save == true) {
+
+        if (consumptionSaved && housingSaved && vehicleSaved) {
             Intent intent = new Intent(MainActivity.this, SummaryActivity.class);
             startActivity(intent);
         }
         else{
-            Toast.makeText(MainActivity.this, "Information missing", Toast.LENGTH_SHORT).show();
-            TimeUnit.SECONDS.sleep(1);
-            textView_ConsumptionSaved.setTextColor(Color.BLACK);
-            textView_HousingSaved.setTextColor(Color.BLACK);
-            textView_VehicleSaved.setTextColor(Color.BLACK);
+            Toast.makeText(MainActivity.this, "Input all information first", Toast.LENGTH_SHORT).show();
         }
     }
 }
