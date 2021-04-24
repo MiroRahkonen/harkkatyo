@@ -48,4 +48,6 @@
     <string name="login">Login</string>
     <string name="new_account">Create a new Account</string>
     <string name="confirm">Confirm</string>
+    <string name="summary">Summary</string>
+
 </resources>
