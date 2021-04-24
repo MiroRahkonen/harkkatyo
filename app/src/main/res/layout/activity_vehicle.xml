@@ -23,12 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -42,8 +43,8 @@
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/vehicle_fuel_type"
                         android:layout_marginBottom="15dp"
+                        android:text="@string/vehicle_fuel_type"
                         app:layout_constraintBottom_toTopOf="@+id/spinner_VehicleFuel"
                         app:layout_constraintStart_toStartOf="@+id/spinner_VehicleFuel" />
 
@@ -52,7 +53,8 @@
                         android:layout_width="220dp"
                         android:layout_height="45dp"
                         android:layout_marginTop="50dp"
-                        android:layout_marginStart="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,7 +83,8 @@
                         android:layout_width="220dp"
                         android:layout_height="45dp"
                         android:layout_marginTop="50dp"
-                        android:layout_marginStart="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,8 +103,8 @@
                         android:id="@+id/textView19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/vehicle_year"
                         android:layout_marginBottom="15dp"
+                        android:text="@string/vehicle_year"
                         app:layout_constraintBottom_toTopOf="@+id/editText_VehicleYear"
                         app:layout_constraintStart_toStartOf="@+id/editText_VehicleYear" />
 
@@ -109,11 +112,12 @@
                         android:id="@+id/editText_VehicleYear"
                         android:layout_width="220dp"
                         android:layout_height="45dp"
+                        android:layout_marginTop="50dp"
                         android:ems="10"
                         android:hint="Range: 1800 - 2030"
                         android:inputType="number"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginStart="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,8 +125,8 @@
                         android:id="@+id/textView_VehicleYear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="Current: "
-                        android:layout_marginStart="25dp"
                         app:layout_constraintStart_toEndOf="@+id/editText_VehicleYear"
                         app:layout_constraintTop_toTopOf="@+id/editText_VehicleYear" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -140,8 +144,8 @@
                         android:id="@+id/textView22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distance driven(km/year):"
                         android:layout_marginBottom="15dp"
+                        android:text="Distance driven(km/year):"
                         app:layout_constraintBottom_toTopOf="@+id/editText_VehicleDistance"
                         app:layout_constraintStart_toStartOf="@+id/editText_VehicleDistance" />
 
@@ -149,12 +153,13 @@
                         android:id="@+id/editText_VehicleDistance"
                         android:layout_width="220dp"
                         android:layout_height="45dp"
+                        android:layout_marginTop="50dp"
                         android:autofillHints=""
                         android:ems="10"
                         android:hint="Range: 0 - 120 000"
                         android:inputType="number"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginStart="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,8 +167,8 @@
                         android:id="@+id/textView_VehicleDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="Current: "
-                        android:layout_marginStart="25dp"
                         app:layout_constraintStart_toEndOf="@+id/editText_VehicleDistance"
                         app:layout_constraintTop_toTopOf="@+id/editText_VehicleDistance" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -181,8 +186,8 @@
                         android:id="@+id/textView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/vehicle_passengers"
                         android:layout_marginBottom="15dp"
+                        android:text="@string/vehicle_passengers"
                         app:layout_constraintBottom_toTopOf="@+id/editText_VehiclePassengers"
                         app:layout_constraintStart_toStartOf="@+id/editText_VehiclePassengers" />
 
@@ -191,10 +196,11 @@
                         android:layout_width="220dp"
                         android:layout_height="45dp"
                         android:ems="10"
+                        android:layout_marginTop="50dp"
                         android:hint="Range: 1 - 10"
                         android:inputType="number"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginStart="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,8 +208,8 @@
                         android:id="@+id/textView_VehiclePassengers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="Current: "
-                        android:layout_marginStart="25dp"
                         app:layout_constraintStart_toEndOf="@+id/editText_VehiclePassengers"
                         app:layout_constraintTop_toTopOf="@+id/editText_VehiclePassengers" />
 
