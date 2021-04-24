@@ -101,12 +101,12 @@
         android:id="@+id/editText_ConsumptionElectronics"
         android:layout_width="220dp"
         android:layout_height="45dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="@string/range_0_1000"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_ConsumptionClothing" />
 
@@ -114,12 +114,12 @@
         android:id="@+id/editText_ConsumptionPaper"
         android:layout_width="220dp"
         android:layout_height="45dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="@string/range_0_1000"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_ConsumptionElectronics" />
 
@@ -127,12 +127,12 @@
         android:id="@+id/editText_ConsumptionRecreation"
         android:layout_width="220dp"
         android:layout_height="45dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="@string/range_0_5000"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_ConsumptionPaper" />
 

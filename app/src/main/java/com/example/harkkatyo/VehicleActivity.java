@@ -86,7 +86,7 @@ public class VehicleActivity extends AppCompatActivity {
             if(testInput()){
                 vehicleData.vehicleResults(distance,passengers,year,fuel,size);
                 returnIntent.putExtra("fromActivity","vehicleActivity");
-                Toast.makeText(VehicleActivity.this, "Saved",Toast.LENGTH_SHORT).show();
+                Toast.makeText(VehicleActivity.this, "Vehicle data saved",Toast.LENGTH_SHORT).show();
                 setResult(0,returnIntent);
                 finish();
             }

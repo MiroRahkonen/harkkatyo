@@ -60,7 +60,7 @@ public class HousingActivity extends AppCompatActivity {
             if(testInput()){
                 housingData.housingResults(area,residents,type);
                 returnIntent.putExtra("fromActivity","housingActivity");
-                Toast.makeText(HousingActivity.this, "Saved",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HousingActivity.this, "Housing data saved",Toast.LENGTH_SHORT).show();
                 setResult(1,returnIntent);
                 finish();
             }

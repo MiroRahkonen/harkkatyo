@@ -42,7 +42,7 @@
     <string name="housing_range">Range: 1 - ∞</string>
     <string name="email">Email</string>
     <string name="account">Account</string>
-    <string name="no_account">Dont have a account? Register here</string>
+    <string name="no_account">Dont have an account? Register here</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
