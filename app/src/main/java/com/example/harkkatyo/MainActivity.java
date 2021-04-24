@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.apache.commons.lang3.time.DateUtils.round;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -42,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
         ReadHousing();
         ReadConsumption();
         ReadVehicle();
-        //DatabaseHandler handler = new DatabaseHandler();
-        //handler.baseReadHousing();
+
+        DatabaseHandler handler = new DatabaseHandler();
+        handler.baseReadHousing();
+        //handler.baseReadVehicle();
 
 
         consumptionData = Consumption.getInstance();
@@ -85,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String fromActivity = data.getStringExtra("fromActivity");
+        ReadHousing();
+        ReadConsumption();
+        ReadVehicle();
 
         //Saving to different variables based on the activity
         switch (fromActivity) {
@@ -150,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String result = snapshot.child("result").getValue(Double.class).toString();
+                    /*Double result = snapshot.child("result").getValue(Double.class);
+                    result1 = Math.round(result1 * 10);
+                    result1 = result1/10*/
                     System.out.println(result);
                     textView_VehicleSaved.setText(result);
                 }
