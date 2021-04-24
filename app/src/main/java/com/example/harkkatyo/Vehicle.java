@@ -19,8 +19,8 @@ public class Vehicle {
     private Vehicle(){
         vehicleResult = 0;
         distance = 0;
-        passengers = 1;
-        year = 1990;
+        passengers = 0;
+        year = 0;
         fuel = "gasoline";
         size = "mini";
     }
