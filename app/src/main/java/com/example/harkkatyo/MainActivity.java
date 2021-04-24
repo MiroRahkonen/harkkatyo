@@ -8,12 +8,23 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
 
+
 public class MainActivity extends AppCompatActivity {
+    FirebaseDatabase root;
+    DatabaseReference ref;
 
     TextView textView_ConsumptionSaved, textView_HousingSaved, textView_VehicleSaved;
     private Boolean consumptionSaved = false, housingSaved = false, vehicleSaved = false;
@@ -28,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        DatabaseHandler handler = new DatabaseHandler();
-        handler.baseReadHousing();
+        ReadHousing();
+        ReadConsumption();
+        ReadVehicle();
+        //DatabaseHandler handler = new DatabaseHandler();
+        //handler.baseReadHousing();
+
 
         consumptionData = Consumption.getInstance();
         housingData = Housing.getInstance();
@@ -37,9 +52,13 @@ public class MainActivity extends AppCompatActivity {
         textView_ConsumptionSaved = findViewById(R.id.textView_ConsumptionSaved);
         textView_HousingSaved = findViewById(R.id.textView_HousingSaved);
         textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
+
+        //textView_HousingSaved.setText(housing1);
+
         textView_ConsumptionSaved.setTextColor(Color.RED);
         textView_HousingSaved.setTextColor(Color.RED);
         textView_VehicleSaved.setTextColor(Color.RED);
+
     }
 
     protected void onResume() {
@@ -100,5 +119,71 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(MainActivity.this, "Input all information first", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void ReadHousing() {
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String result = snapshot.child("result").getValue(Double.class).toString();
+                    System.out.println(result);
+                    textView_HousingSaved.setText(result);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Reading cancelled");
+
+            }
+
+        });
+    }
+    public void ReadVehicle() {
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("vehicle").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String result = snapshot.child("result").getValue(Double.class).toString();
+                    System.out.println(result);
+                    textView_VehicleSaved.setText(result);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Reading cancelled");
+
+            }
+
+        });
+    }
+    public void ReadConsumption() {
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("consumption").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String result = snapshot.child("result").getValue(Double.class).toString();
+                    System.out.println(result);
+                    textView_VehicleSaved.setText(result);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Reading cancelled");
+
+            }
+
+        });
     }
 }

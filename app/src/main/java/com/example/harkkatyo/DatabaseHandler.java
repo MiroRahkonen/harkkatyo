@@ -65,37 +65,20 @@ public class DatabaseHandler {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //DatabaseReference ref_result =
-                list.clear();
-                /*if (snapshot.exists()) {
-                    //int result = snapshot.child("housing").child("result").getValue(Integer.class);
-                    //Housing housing = snapshot.getValue(Housing.class);
-                    //System.out.println("TESTIII" + housing.getResult());
-
-                    System.out.println(snapshot.toString());
-                    System.out.println("Väli");
-                    //String result = snapshot.child((FirebaseAuth.getInstance().getCurrentUser()).ch
-                    //System.out.println(result);
-
-                }*/
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     System.out.println(dataSnapshot);
-                    //list.add(dataSnapshot.getValue().toString());
-                    //System.out.println(dataSnapshot.toString());
                     String result = snapshot.child("result").getValue(Double.class).toString();
                     System.out.println("***************************************THIS IS THE RESULT");
                     System.out.println(result);
                     //System.out.println("********************************************************************************************************************");
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 System.out.println("Reading cancelled");
-
             }
         });
+
 
 
     }
