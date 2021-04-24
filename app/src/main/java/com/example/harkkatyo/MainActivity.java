@@ -1,6 +1,7 @@
 package com.example.harkkatyo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -16,6 +17,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.concurrent.TimeUnit;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -50,26 +54,31 @@ public class MainActivity extends AppCompatActivity {
         textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
 
         //textView_HousingSaved.setText(housing1);
+
+        textView_ConsumptionSaved.setTextColor(Color.RED);
+        textView_HousingSaved.setTextColor(Color.RED);
+        textView_VehicleSaved.setTextColor(Color.RED);
+
     }
 
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
     }
 
-    public void gotoConsumption(View v){
-        Intent intent = new Intent(MainActivity.this,ConsumptionActivity.class);
-        startActivityForResult(intent,0);
+    public void gotoConsumption(View v) {
+        Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
+        startActivityForResult(intent, 0);
     }
 
-    public void gotoHousing(View v){
-        Intent intent = new Intent(MainActivity.this,HousingActivity.class);
-        startActivityForResult(intent,0);
+    public void gotoHousing(View v) {
+        Intent intent = new Intent(MainActivity.this, HousingActivity.class);
+        startActivityForResult(intent, 0);
     }
 
 
-    public void gotoVehicle(View v){
-        Intent intent = new Intent(MainActivity.this,VehicleActivity.class);
-        startActivityForResult(intent,0);
+    public void gotoVehicle(View v) {
+        Intent intent = new Intent(MainActivity.this, VehicleActivity.class);
+        startActivityForResult(intent, 0);
     }
 
     //Saving data to viewmodel from result
@@ -82,16 +91,19 @@ public class MainActivity extends AppCompatActivity {
             case ("consumptionActivity"):
                 System.out.println(consumptionData.getURL());
                 textView_ConsumptionSaved.setText("Data saved");
+                textView_ConsumptionSaved.setTextColor(Color.BLACK);
                 consumptionSaved = true;
                 break;
 
             case ("housingActivity"):
                 textView_HousingSaved.setText("Data saved");
+                textView_HousingSaved.setTextColor(Color.BLACK);
                 housingSaved = true;
                 break;
 
             case ("vehicleActivity"):
                 textView_VehicleSaved.setText("Data saved");
+                textView_VehicleSaved.setTextColor(Color.BLACK);
                 vehicleSaved = true;
                 break;
         }
@@ -99,18 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void createSummary(View v){
         //Testing if all data has been saved
-        if(!consumptionSaved){
-            Toast.makeText(MainActivity.this, "Consumption information missing",Toast.LENGTH_SHORT).show();
-        }
-        else if (!housingSaved){
-            Toast.makeText(MainActivity.this, "Housing information missing",Toast.LENGTH_SHORT).show();
-        }
-        else if(!vehicleSaved){
-            Toast.makeText(MainActivity.this, "Vehicle information missing",Toast.LENGTH_SHORT).show();
+
+        if (consumptionSaved && housingSaved && vehicleSaved) {
+            Intent intent = new Intent(MainActivity.this, SummaryActivity.class);
+            startActivity(intent);
         }
         else{
-            Intent intent = new Intent(MainActivity.this,SummaryActivity.class);
-            startActivity(intent);
+            Toast.makeText(MainActivity.this, "Input all information first", Toast.LENGTH_SHORT).show();
         }
     }
     public void ReadHousing() {
