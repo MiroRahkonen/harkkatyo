@@ -28,20 +28,29 @@ public class DatabaseHandler {
     }
 
     public void baseReadUser() {
+        Housing house = Housing.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
-        ref = root.getReference("testi").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
+                    String type = snapshot.child("type").getValue(String.class);
+                    int area = snapshot.child("area").getValue(int.class);
+                    int residents = snapshot.child("residents").getValue(int.class);
+                    double result = snapshot.child("result").getValue(Double.class);
+                    house.housingResults(area, residents, type);
+
+
+                }
+                /*for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     //list.add(dataSnapshot.getValue().toString());
                     //System.out.println(dataSnapshot.toString());
                     String result = dataSnapshot.child("result").getValue(String.class);
                     System.out.println("***************************************THIS IS THE RESULT");
                     System.out.println(result);
                     //System.out.println(dataSnapshot.getValue());
-                }
+                }*/
             }
 
             @Override
@@ -66,13 +75,12 @@ public class DatabaseHandler {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
                     String type = snapshot.child("type").getValue(String.class);
                     int area = snapshot.child("area").getValue(int.class);
                     int residents = snapshot.child("residents").getValue(int.class);
                     double result = snapshot.child("result").getValue(Double.class);
                     house.housingResults(area, residents, type);
-                    System.out.println(result);
 
                 }
             }
@@ -84,6 +92,7 @@ public class DatabaseHandler {
 
 
 
+
     }
     public void baseReadVehicle() {
         Vehicle vehicle = Vehicle.getInstance();
@@ -92,7 +101,7 @@ public class DatabaseHandler {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
                     int distance = snapshot.child("distance").getValue(int.class);
                     String fuel = snapshot.child("fuel").getValue(String.class);
                     int passengers = snapshot.child("passsengers").getValue(int.class);
@@ -100,7 +109,6 @@ public class DatabaseHandler {
                     String size = snapshot.child("size").getValue(String.class);
                     int year = snapshot.child("year").getValue(int.class);
                     vehicle.vehicleResults(distance, passengers, year, fuel, size);
-                    System.out.println(result);
 
                 }
             }
@@ -120,7 +128,7 @@ public class DatabaseHandler {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
                     int clothing = snapshot.child("clothing").getValue(int.class);
                     int communications = 0;
                     int communicationsResult = 0;
