@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
         ReadHousing();
         ReadConsumption();
         ReadVehicle();
-        //DatabaseHandler handler = new DatabaseHandler();
-        //handler.baseReadHousing();
+
+        DatabaseHandler handler = new DatabaseHandler();
+        handler.baseReadHousing();
+        //handler.baseReadVehicle();
 
 
         consumptionData = Consumption.getInstance();
@@ -86,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String fromActivity = data.getStringExtra("fromActivity");
+        ReadHousing();
+        ReadConsumption();
+        ReadVehicle();
 
         //Saving to different variables based on the activity
         switch (fromActivity) {

@@ -59,6 +59,7 @@ public class DatabaseHandler {
 
     }
     public void baseReadHousing() {
+        Housing house = Housing.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         //ref = root.getReference();
@@ -66,11 +67,13 @@ public class DatabaseHandler {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    System.out.println(dataSnapshot);
-                    String result = snapshot.child("result").getValue(Double.class).toString();
-                    System.out.println("***************************************THIS IS THE RESULT");
+                    String type = snapshot.child("type").getValue(String.class);
+                    int area = snapshot.child("area").getValue(int.class);
+                    int residents = snapshot.child("residents").getValue(int.class);
+                    double result = snapshot.child("result").getValue(Double.class);
+                    house.housingResults(area, residents, type);
                     System.out.println(result);
-                    //System.out.println("********************************************************************************************************************");
+
                 }
             }
             @Override
@@ -82,6 +85,66 @@ public class DatabaseHandler {
 
 
     }
+    public void baseReadVehicle() {
+        Vehicle vehicle = Vehicle.getInstance();
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("vehicle").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    int distance = snapshot.child("distance").getValue(int.class);
+                    String fuel = snapshot.child("fuel").getValue(String.class);
+                    int passengers = snapshot.child("passsengers").getValue(int.class);
+                    double result = snapshot.child("result").getValue(Double.class);
+                    String size = snapshot.child("size").getValue(String.class);
+                    int year = snapshot.child("year").getValue(int.class);
+                    vehicle.vehicleResults(distance, passengers, year, fuel, size);
+                    System.out.println(result);
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Reading cancelled");
+            }
+        });
+
+
+
+    }
+    public void baseReadConsumption() {
+        Consumption consumption = Consumption.getInstance();
+        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
+        ref = root.getReference("consumption").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    int clothing = snapshot.child("clothing").getValue(int.class);
+                    int communications = 0;
+                    int communicationsResult = 0;
+                    int electronics = snapshot.child("electronics").getValue(int.class);
+                    int paper = snapshot.child("paper").getValue(int.class);
+                    int recreation = snapshot.child("recreation").getValue(int.class);
+                    String url = snapshot.child("url").getValue(String.class);
+
+                    consumption.consumptionResults(clothing, 0, electronics, 0, paper, recreation, 0);
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Reading cancelled");
+            }
+        });
+
+
+
+    }
+
+
+
 
     public void baseWriteHousing() {
         Housing housing = Housing.getInstance();
