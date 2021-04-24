@@ -37,21 +37,16 @@ public class SummaryActivity extends AppCompatActivity {
 
     public void setSummaries(){
         double doubleTotal = consumptionData.getConsumptionTotal()+housingData.getResult()+vehicleData.getResult();
-        String consumptionTotal = String.format("%.2f",consumptionData.getConsumptionTotal());
-        String housingTotal = String.format("%.2f",housingData.getResult());
-        String vehicleTotal = String.format("%.2f",vehicleData.getResult());
-        String allTotal = String.format("%.2f",doubleTotal);
-
 
         textView_ConsumptionResult.setText("Consumption emissions(CO2 kg/year)" +
                 "\nClothing: " + String.format("%.2f",consumptionData.getClothingResult()) +
                 "\nElectronics: " + String.format("%.2f",consumptionData.getElectronicsResult()) +
                 "\nPaper: " + String.format("%.2f",consumptionData.getPaperResult()) +
                 "\nRecreation: " + String.format("%.2f",consumptionData.getRecreationResult()) +
-                "\nTotal: " + consumptionTotal);
-        textView_HousingResult.setText("Housing emissions(CO2 kg/year)\nTotal: " + housingTotal);
-        textView_VehicleResult.setText("Vehicle emission(CO2 kg/year)\nTotal: " + vehicleTotal);
-        textView_SummaryTotal.setText("Total emissions(CO2 kg/year)\nTotal: "+allTotal);
+                "\nTotal: " + String.format("%.2f",consumptionData.getConsumptionTotal()));
+        textView_HousingResult.setText("Housing emissions(CO2 kg/year)\nTotal: " + String.format("%.2f",housingData.getResult()));
+        textView_VehicleResult.setText("Vehicle emission(CO2 kg/year)\nTotal: " + String.format("%.2f",vehicleData.getResult()));
+        textView_SummaryTotal.setText("Total emissions(CO2 kg/year)\nTotal: "+String.format("%.2f",doubleTotal));
     }
 
     public void cancel(View v){
