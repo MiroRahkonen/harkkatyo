@@ -1,6 +1,7 @@
 package com.example.harkkatyo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,24 +37,24 @@ public class MainActivity extends AppCompatActivity {
         textView_VehicleSaved = findViewById(R.id.textView_VehicleSaved);
     }
 
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
     }
 
-    public void gotoConsumption(View v){
-        Intent intent = new Intent(MainActivity.this,ConsumptionActivity.class);
-        startActivityForResult(intent,0);
+    public void gotoConsumption(View v) {
+        Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
+        startActivityForResult(intent, 0);
     }
 
-    public void gotoHousing(View v){
-        Intent intent = new Intent(MainActivity.this,HousingActivity.class);
-        startActivityForResult(intent,0);
+    public void gotoHousing(View v) {
+        Intent intent = new Intent(MainActivity.this, HousingActivity.class);
+        startActivityForResult(intent, 0);
     }
 
 
-    public void gotoVehicle(View v){
-        Intent intent = new Intent(MainActivity.this,VehicleActivity.class);
-        startActivityForResult(intent,0);
+    public void gotoVehicle(View v) {
+        Intent intent = new Intent(MainActivity.this, VehicleActivity.class);
+        startActivityForResult(intent, 0);
     }
 
     //Saving data to viewmodel from result
@@ -79,20 +82,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void createSummary(View v){
+    public void createSummary(View v) throws InterruptedException {
         //Testing if all data has been saved
-        if(consumptionSaved == false){
-            Toast.makeText(MainActivity.this, "Consumption information missing",Toast.LENGTH_SHORT).show();
+        Boolean save = true;
+        if (consumptionSaved == false) {
+            textView_ConsumptionSaved.setTextColor(Color.RED);
+            save = false;
         }
-        else if (housingSaved == false){
-            Toast.makeText(MainActivity.this, "Housing information missing",Toast.LENGTH_SHORT).show();
+        if (housingSaved == false) {
+            textView_HousingSaved.setTextColor(Color.RED);
+            save = false;
         }
-        else if(vehicleSaved == false){
-            Toast.makeText(MainActivity.this, "Vehicle information missing",Toast.LENGTH_SHORT).show();
+        if (vehicleSaved == false) {
+            textView_VehicleSaved.setTextColor(Color.RED);
+            save = false;
+        }
+        if (save == true) {
+            Intent intent = new Intent(MainActivity.this, SummaryActivity.class);
+            startActivity(intent);
         }
         else{
-            Intent intent = new Intent(MainActivity.this,SummaryActivity.class);
-            startActivity(intent);
+            Toast.makeText(MainActivity.this, "Information missing", Toast.LENGTH_SHORT).show();
+            TimeUnit.SECONDS.sleep(1);
+            textView_ConsumptionSaved.setTextColor(Color.BLACK);
+            textView_HousingSaved.setTextColor(Color.BLACK);
+            textView_VehicleSaved.setTextColor(Color.BLACK);
         }
     }
 }
