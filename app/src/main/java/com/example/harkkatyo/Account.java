@@ -20,4 +20,7 @@ public class Account {
         return password;
     }
 
+    public String getName2() {
+        return name;
+    }
 }

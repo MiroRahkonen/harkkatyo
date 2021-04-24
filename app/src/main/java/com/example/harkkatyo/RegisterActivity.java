@@ -137,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Create Firebase account
         createUser(email1, password1, name);
         //createDatabase(email1, password1, name);
-        DatabaseHandler handler = new DatabaseHandler();
+        //DatabaseHandler handler = new DatabaseHandler();
         //handler.writeBase();
         System.out.println("Täällä tulostetaan***************************************************");
         finish();
@@ -161,13 +161,18 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Account d1 = new Account(email, password, name);
+                            //Account d1 = new Account(email, password, name);
                             //Create new user in firebase and link it to account
+                            DatabaseHandler handler = new DatabaseHandler();
+                            handler.baseWriteUser(email, password, name);
+                            //handler.baseReadUser();
 
                             System.out.println("Toimii************************************************************************************************************************************************************************");
+                            /*
                             root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
                             root.setLogLevel(Logger.Level.DEBUG);
                             root.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(d1);
+                            */
                             //Store info in database
                             /*root = FirebaseDatabase.getInstance();
                             ref = root.getReference("testi");
