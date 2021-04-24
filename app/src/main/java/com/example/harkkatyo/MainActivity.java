@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void createSummary(View v){
         //Testing if all data has been saved
-        if(consumptionSaved == false){
+        if(!consumptionSaved){
             Toast.makeText(MainActivity.this, "Consumption information missing",Toast.LENGTH_SHORT).show();
         }
-        else if (housingSaved == false){
+        else if (!housingSaved){
             Toast.makeText(MainActivity.this, "Housing information missing",Toast.LENGTH_SHORT).show();
         }
-        else if(vehicleSaved == false){
+        else if(!vehicleSaved){
             Toast.makeText(MainActivity.this, "Vehicle information missing",Toast.LENGTH_SHORT).show();
         }
         else{
