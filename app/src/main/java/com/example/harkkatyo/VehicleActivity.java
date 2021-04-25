@@ -1,7 +1,6 @@
 package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,14 +48,12 @@ public class VehicleActivity extends AppCompatActivity {
 
     public void saveChanges(View v){
 
-        try{        /*Getting data from edittexts to viewmodel*/
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("fromActivity","vehicleActivity");
-
-            distance = Integer.parseInt(editText_Distance.getText().toString());
+        try{        /*Getting data from edittexts*/
+                        distance = Integer.parseInt(editText_Distance.getText().toString());
             passengers = Integer.parseInt(editText_Passengers.getText().toString());
             year = Integer.parseInt(editText_Year.getText().toString());
 
+            //Getting items from spinners
             String fuelType = spinner_VehicleFuel.getSelectedItem().toString();
             switch(fuelType){
                 case("Gasoline"):
@@ -69,7 +66,6 @@ public class VehicleActivity extends AppCompatActivity {
                     fuel = "electricity";
                     break;
             }
-
             String vehicleSize = spinner_VehicleSize.getSelectedItem().toString();
             switch(vehicleSize){
                 case("Mini"):
@@ -82,22 +78,24 @@ public class VehicleActivity extends AppCompatActivity {
                     size = "large";
                     break;
             }
-            //If input is correct and thus testinput returns true, saving data
+
+            //If input is correct, saving data and returning to main window
             if(testInput()){
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("fromActivity","vehicleActivity");
                 vehicleData.vehicleResults(distance,passengers,year,fuel,size);
                 DatabaseHandler handler = new DatabaseHandler();
                 handler.baseWriteVehicle();
-                returnIntent.putExtra("fromActivity","vehicleActivity");
                 Toast.makeText(VehicleActivity.this, "Vehicle data saved",Toast.LENGTH_SHORT).show();
                 setResult(0,returnIntent);
                 finish();
             }
         }
-        catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
+        catch (NumberFormatException e) {       /*Shows error if input isn't an integer*/
             Toast.makeText(VehicleActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
     }
-
+    //Setting existing data to text fields
     public void setValuesToText(){
         TextView textView_Distance = findViewById(R.id.textView_VehicleDistance);
         textView_Distance.setText("Current: "+ vehicleData.getDistance());
@@ -131,7 +129,7 @@ public class VehicleActivity extends AppCompatActivity {
         }
     }
 
-    //Used to test if input is in their set ranges
+    //Tests if the input is within the correct range
     public Boolean testInput(){
         if((year > 2030) || (year < 1800)){
             Toast.makeText(VehicleActivity.this, "Year range is (1800 - 2030)",Toast.LENGTH_SHORT).show();
@@ -149,7 +147,7 @@ public class VehicleActivity extends AppCompatActivity {
             return true;
         }
     }
-
+    //Data is not saved and returning to main window
     public void cancel(View v){
         Intent returnIntent = new Intent();
         returnIntent.putExtra("fromActivity","null");

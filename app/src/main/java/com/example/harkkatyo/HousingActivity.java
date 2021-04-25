@@ -1,7 +1,6 @@
 package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,9 +38,7 @@ public class HousingActivity extends AppCompatActivity {
 
     public void saveChanges(View v){
 
-        try{        /*Getting data from edittexts to viewmodel*/
-            Intent returnIntent = new Intent();
-
+        try{        /*Getting data from edittexts*/
             area = Integer.parseInt(editText_Area.getText().toString());
             residents = Integer.parseInt(editText_Residents.getText().toString());
 
@@ -57,7 +54,9 @@ public class HousingActivity extends AppCompatActivity {
                     type = "family";
                     break;
             }
+            //If input is valid, saving data and returning to main window
             if(testInput()){
+                Intent returnIntent = new Intent();
                 housingData.housingResults(area,residents,type);
                 DatabaseHandler handler = new DatabaseHandler();
                 handler.baseWriteHousing();
@@ -67,11 +66,11 @@ public class HousingActivity extends AppCompatActivity {
                 finish();
             }
         }
-        catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
+        catch (NumberFormatException e) {       /*Shows error if input isn't an integer*/
             Toast.makeText(HousingActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
     }
-
+    //Setting existing data to text fields
     public void setValuesToText(){
         TextView area = findViewById(R.id.textView_HousingArea);
         area.setText("Current: "+ housingData.getArea());
@@ -89,7 +88,7 @@ public class HousingActivity extends AppCompatActivity {
                 break;
         }
     }
-
+    //Tests if the input is within the correct range
     public Boolean testInput(){
         if(area < 1){
             Toast.makeText(HousingActivity.this, "Area range is (1 - ...)",Toast.LENGTH_SHORT).show();
@@ -103,7 +102,7 @@ public class HousingActivity extends AppCompatActivity {
             return true;
         }
     }
-
+    //Data is not saved and returning to main window
     public void cancel(View v){
         Intent returnIntent = new Intent();
         returnIntent.putExtra("fromActivity","null");
