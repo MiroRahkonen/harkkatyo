@@ -2,7 +2,6 @@ package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -39,6 +38,7 @@ public class SummaryActivity extends AppCompatActivity {
         finish();
     }
 
+    //Puts existing data into the text fields
     public void setSummaries(){
         double doubleTotal = consumptionData.getConsumptionTotal()+housingData.getResult()+vehicleData.getResult();
 

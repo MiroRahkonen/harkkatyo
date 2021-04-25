@@ -1,7 +1,6 @@
 package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,14 +33,15 @@ public class ConsumptionActivity extends AppCompatActivity {
 
     public void saveChanges(View v){
 
-        try{        /*Getting data from edittexts to viewmodel*/
-            Intent returnIntent = new Intent();
+        try{        /*Getting data from edittexts*/
             clothing = Integer.parseInt(editText_Clothing.getText().toString());
             electronics = Integer.parseInt(editText_Electronics.getText().toString());
             paper = Integer.parseInt(editText_Paper.getText().toString());
             recreation = Integer.parseInt(editText_Recreation.getText().toString());
 
+            //If input is valid, saving data and returning to main window
             if(testInput()){
+                Intent returnIntent = new Intent();
                 consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
                 DatabaseHandler handler = new DatabaseHandler();
                 handler.baseWriteConsumption();
@@ -51,11 +51,12 @@ public class ConsumptionActivity extends AppCompatActivity {
                 finish();
             }
         }
-        catch (NumberFormatException e) {       /*Shows error if input isn't valid*/
+        catch (NumberFormatException e) {       /*Shows error if input isn't an integer*/
             Toast.makeText(ConsumptionActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
     }
 
+    //Setting existing data to text fields
     public void setValuesToText(){
         TextView clothing = findViewById(R.id.textView_ConsumptionClothing);
         clothing.setText("Current: "+ consumptionData.getClothing());
@@ -67,6 +68,7 @@ public class ConsumptionActivity extends AppCompatActivity {
         recreation.setText("Current: "+ consumptionData.getRecreation());
     }
 
+    //Tests if the input is within the correct range
     public Boolean testInput(){
         if((clothing > 1000) || (clothing < 0)){
             Toast.makeText(ConsumptionActivity.this, "Clothing range is (0 - 1000)",Toast.LENGTH_SHORT).show();
@@ -89,6 +91,7 @@ public class ConsumptionActivity extends AppCompatActivity {
         }
     }
 
+    //Data is not saved and returning to main window
     public void cancel(View v){
         Intent returnIntent = new Intent();
         returnIntent.putExtra("fromActivity","null");

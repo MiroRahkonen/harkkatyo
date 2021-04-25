@@ -57,8 +57,8 @@
                         android:id="@+id/textView_ConsumptionSaved"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="6dp"
                         android:text="Not saved"
                         app:layout_constraintStart_toStartOf="@+id/button_MainGotoConsumption"
                         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoConsumption" />
@@ -91,8 +91,8 @@
                         android:id="@+id/textView_HousingSaved"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="6dp"
                         android:text="Not saved"
                         app:layout_constraintStart_toStartOf="@+id/button_MainGotoHousing"
                         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoHousing" />
@@ -125,8 +125,8 @@
                         android:id="@+id/textView_VehicleSaved"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="6dp"
                         android:text="Not saved"
                         app:layout_constraintStart_toStartOf="@+id/button_MainGotoVehicle"
                         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoVehicle" />
