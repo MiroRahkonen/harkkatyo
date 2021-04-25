@@ -57,41 +57,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void gotoConsumption(View v) {
         Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
     public void gotoHousing(View v) {
         Intent intent = new Intent(MainActivity.this, HousingActivity.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
     public void gotoVehicle(View v) {
         Intent intent = new Intent(MainActivity.this, VehicleActivity.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
-    //Saving data to viewmodel from result
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        String fromActivity = data.getStringExtra("fromActivity");
-        /*ReadHousing();
-        ReadConsumption();
-        ReadVehicle();*/
-
-        //Saving to different variables based on the activity
-        switch (fromActivity) {
-            case ("consumptionActivity"):
-                textView_ConsumptionSaved.setTextColor(Color.BLACK);
-                break;
-
-            case ("housingActivity"):
-                textView_HousingSaved.setTextColor(Color.BLACK);
-                break;
-            case ("vehicleActivity"):
-                textView_VehicleSaved.setTextColor(Color.BLACK);
-                break;
-        }
-    }
     //Goes to summary
     public void createSummary(View v){
         Intent intent = new Intent(MainActivity.this, SummaryActivity.class);

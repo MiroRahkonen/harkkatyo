@@ -41,13 +41,10 @@ public class ConsumptionActivity extends AppCompatActivity {
 
             //If input is valid, saving data and returning to main window
             if(testInput()){
-                Intent returnIntent = new Intent();
                 consumptionData.consumptionResults(clothing,0,electronics,0,paper,recreation,0);
                 DatabaseHandler handler = new DatabaseHandler();
                 handler.baseWriteConsumption();
-                returnIntent.putExtra("fromActivity","consumptionActivity");
                 Toast.makeText(ConsumptionActivity.this, "Consumption data saved",Toast.LENGTH_SHORT).show();
-                setResult(0,returnIntent);
                 finish();
             }
         }
@@ -68,7 +65,7 @@ public class ConsumptionActivity extends AppCompatActivity {
         recreation.setText("Current: "+ consumptionData.getRecreation());
     }
 
-    //Tests if the input is within the correct range
+    //Tests if the input is within the correct range and returns true if all input is correct
     public Boolean testInput(){
         if((clothing > 1000) || (clothing < 0)){
             Toast.makeText(ConsumptionActivity.this, "Clothing range is (0 - 1000)",Toast.LENGTH_SHORT).show();
@@ -92,11 +89,7 @@ public class ConsumptionActivity extends AppCompatActivity {
     }
 
     //Data is not saved and returning to main window
-    public void cancel(View v){
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("fromActivity","null");
-        setResult(0,returnIntent);
-        finish();
+    public void cancel(View v){finish();
     }
 
 }

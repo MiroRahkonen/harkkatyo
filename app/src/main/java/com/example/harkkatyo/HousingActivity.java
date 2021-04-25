@@ -2,7 +2,6 @@ package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -56,13 +55,10 @@ public class HousingActivity extends AppCompatActivity {
             }
             //If input is valid, saving data and returning to main window
             if(testInput()){
-                Intent returnIntent = new Intent();
                 housingData.housingResults(area,residents,type);
                 DatabaseHandler handler = new DatabaseHandler();
                 handler.baseWriteHousing();
-                returnIntent.putExtra("fromActivity","housingActivity");
                 Toast.makeText(HousingActivity.this, "Housing data saved",Toast.LENGTH_SHORT).show();
-                setResult(1,returnIntent);
                 finish();
             }
         }
@@ -70,7 +66,7 @@ public class HousingActivity extends AppCompatActivity {
             Toast.makeText(HousingActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
         }
     }
-    //Setting existing data to text fields
+    //Setting existing data to text fields and spinner
     public void setValuesToText(){
         TextView area = findViewById(R.id.textView_HousingArea);
         area.setText("Current: "+ housingData.getArea());
@@ -88,7 +84,7 @@ public class HousingActivity extends AppCompatActivity {
                 break;
         }
     }
-    //Tests if the input is within the correct range
+    //Tests if the input is within the correct range and returns true if all input is correct
     public Boolean testInput(){
         if(area < 1){
             Toast.makeText(HousingActivity.this, "Area range is (1 - ...)",Toast.LENGTH_SHORT).show();
@@ -103,10 +99,6 @@ public class HousingActivity extends AppCompatActivity {
         }
     }
     //Data is not saved and returning to main window
-    public void cancel(View v){
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("fromActivity","null");
-        setResult(0,returnIntent);
-        finish();
+    public void cancel(View v){finish();
     }
 }

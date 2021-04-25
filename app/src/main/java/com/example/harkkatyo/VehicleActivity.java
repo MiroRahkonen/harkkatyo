@@ -2,7 +2,6 @@ package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -49,7 +48,7 @@ public class VehicleActivity extends AppCompatActivity {
     public void saveChanges(View v){
 
         try{        /*Getting data from edittexts*/
-                        distance = Integer.parseInt(editText_Distance.getText().toString());
+            distance = Integer.parseInt(editText_Distance.getText().toString());
             passengers = Integer.parseInt(editText_Passengers.getText().toString());
             year = Integer.parseInt(editText_Year.getText().toString());
 
@@ -81,13 +80,10 @@ public class VehicleActivity extends AppCompatActivity {
 
             //If input is correct, saving data and returning to main window
             if(testInput()){
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("fromActivity","vehicleActivity");
                 vehicleData.vehicleResults(distance,passengers,year,fuel,size);
                 DatabaseHandler handler = new DatabaseHandler();
                 handler.baseWriteVehicle();
                 Toast.makeText(VehicleActivity.this, "Vehicle data saved",Toast.LENGTH_SHORT).show();
-                setResult(0,returnIntent);
                 finish();
             }
         }
@@ -104,7 +100,7 @@ public class VehicleActivity extends AppCompatActivity {
         TextView textView_Year = findViewById(R.id.textView_VehicleYear);
         textView_Year.setText("Current: "+ vehicleData.getYear());
 
-        //Setting saved options to spinners
+        //Setting existing options to spinners
         switch(vehicleData.getFuel()){
             case("gasoline"):
                 spinner_VehicleFuel.setSelection(0);
@@ -129,7 +125,7 @@ public class VehicleActivity extends AppCompatActivity {
         }
     }
 
-    //Tests if the input is within the correct range
+    //Tests if the input is within the correct range and returns true if all input is correct
     public Boolean testInput(){
         if((year > 2030) || (year < 1800)){
             Toast.makeText(VehicleActivity.this, "Year range is (1800 - 2030)",Toast.LENGTH_SHORT).show();
@@ -147,11 +143,7 @@ public class VehicleActivity extends AppCompatActivity {
             return true;
         }
     }
-    //Data is not saved and returning to main window
-    public void cancel(View v){
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("fromActivity","null");
-        setResult(0,returnIntent);
-        finish();
+    //Doesn't save data and returns to main window
+    public void cancel(View v){finish();
     }
 }
