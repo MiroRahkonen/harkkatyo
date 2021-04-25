@@ -34,7 +34,8 @@ public class SummaryActivity extends AppCompatActivity {
         double consumptionsum = consumptionData.getConsumptionTotal();
         double vehiclesum = vehicleData.getResult();
         double housingsum = housingData.getResult();
-
+        DatabaseHandler handler = new DatabaseHandler();
+        handler.baseWriteSummary(vehiclesum, consumptionsum, housingsum);
         Toast.makeText(SummaryActivity.this, "Data saved",Toast.LENGTH_SHORT).show();
         finish();
     }

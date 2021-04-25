@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         textView4 = (TextView) findViewById(R.id.textView4);
 
         mAuth = FirebaseAuth.getInstance();
-
-
 
         //Confirm
         button_confirm.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 
     //Move to RegisterActivity
     private void goToRegister() {
@@ -101,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //Check for valid email
     private Boolean checkEmail1() {
         String test = editText_EmailAddress.getText().toString();
 
@@ -116,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
+
+    //Check for valid email
     private Boolean checkPassword1() {
         String test = editText_Password.getText().toString();
         if (test.isEmpty()) {
@@ -126,11 +125,6 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
-
-
-
-
-
 
 
 }
