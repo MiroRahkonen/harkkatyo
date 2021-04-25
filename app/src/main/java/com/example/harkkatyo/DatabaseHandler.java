@@ -16,59 +16,25 @@ import java.util.ArrayList;
 public class DatabaseHandler {
     FirebaseDatabase root;
     DatabaseReference ref;
-    ArrayList<String> list = new ArrayList<>();
 
+    //Store class data in firebase database
     public void baseWriteUser(String email, String password, String name) {
         Account d1 = new Account(email, password, name);
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         //root.setLogLevel(Logger.Level.DEBUG);
         root.getReference("testi").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(d1);
-
-
     }
 
-    public void baseReadUser() {
-        Housing house = Housing.getInstance();
-        root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
-        ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String type = snapshot.child("type").getValue(String.class);
-                    int area = snapshot.child("area").getValue(int.class);
-                    int residents = snapshot.child("residents").getValue(int.class);
-                    double result = snapshot.child("result").getValue(Double.class);
-                    house.housingResults(area, residents, type);
-
-
-                }
-                /*for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    //list.add(dataSnapshot.getValue().toString());
-                    //System.out.println(dataSnapshot.toString());
-                    String result = dataSnapshot.child("result").getValue(String.class);
-                    System.out.println("***************************************THIS IS THE RESULT");
-                    System.out.println(result);
-                    //System.out.println(dataSnapshot.getValue());
-                }*/
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("Reading cancelled");
-
-            }
-        });
-    }
-
+    //Store class data in firebase database
     public void baseWriteSummary(double vehiclesum, double consumptionsum, double housingsum) {
         Summary summary = new Summary(vehiclesum, consumptionsum, housingsum);
-
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("summary").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ref.setValue(summary);
 
     }
+
+    //Read user specific housing data from database if data exists and update class instance data from it
     public void baseReadHousing() {
         Housing house = Housing.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
@@ -83,7 +49,6 @@ public class DatabaseHandler {
                     int residents = snapshot.child("residents").getValue(int.class);
                     double result = snapshot.child("result").getValue(Double.class);
                     house.housingResults(area, residents, type);
-
                 }
             }
             @Override
@@ -92,10 +57,8 @@ public class DatabaseHandler {
             }
         });
 
-
-
-
     }
+    //Read user specific vehicle data from database if data exists and update class instance data from it
     public void baseReadVehicle() {
         Vehicle vehicle = Vehicle.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
@@ -120,9 +83,8 @@ public class DatabaseHandler {
             }
         });
 
-
-
     }
+    //Read user specific consumption data from database if data exists and update class instance data from it
     public void baseReadConsumption() {
         Consumption consumption = Consumption.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
@@ -132,15 +94,12 @@ public class DatabaseHandler {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     int clothing = snapshot.child("clothing").getValue(int.class);
-                    int communications = 0;
-                    int communicationsResult = 0;
                     int electronics = snapshot.child("electronics").getValue(int.class);
                     int paper = snapshot.child("paper").getValue(int.class);
                     int recreation = snapshot.child("recreation").getValue(int.class);
                     String url = snapshot.child("url").getValue(String.class);
 
                     consumption.consumptionResults(clothing, 0, electronics, 0, paper, recreation, 0);
-
                 }
             }
             @Override
@@ -148,14 +107,9 @@ public class DatabaseHandler {
                 System.out.println("Reading cancelled");
             }
         });
-
-
-
     }
 
-
-
-
+    //Store class data in firebase database
     public void baseWriteHousing() {
         Housing housing = Housing.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
@@ -164,6 +118,7 @@ public class DatabaseHandler {
 
     }
 
+    //Store class data in firebase database
     public void baseWriteVehicle() {
         Vehicle vehicle = Vehicle.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
@@ -172,6 +127,7 @@ public class DatabaseHandler {
 
     }
 
+    //Store class data in firebase database
     public void baseWriteConsumption() {
         Consumption consumption = Consumption.getInstance();
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");

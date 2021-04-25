@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-
-
-        //Confirm
+        //Check is user has given valid information and attempt login
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
                 check2 = checkPassword1();
                 if (check1 && check2 == true) {
                     loginUser(email, password);
-                    //goToMain();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "Insufficient information",Toast.LENGTH_LONG).show();
@@ -63,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Register
+        //Go to Register
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 
     //Move to RegisterActivity
     private void goToRegister() {
@@ -84,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(switchActivityIntent);
     }
 
-    //Login user in firebase database
+    //Login user in firebase database if inputs are correct and match a created user
     private void loginUser(String email1, String password1) {
         mAuth.signInWithEmailAndPassword(email1, password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -101,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //Check is user has given valid email
     private Boolean checkEmail1() {
         String test = editText_EmailAddress.getText().toString();
 
@@ -116,6 +112,8 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
+
+    //Check is user has given valid password
     private Boolean checkPassword1() {
         String test = editText_Password.getText().toString();
         if (test.isEmpty()) {
@@ -126,11 +124,6 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
-
-
-
-
-
 
 
 }

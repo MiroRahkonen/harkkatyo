@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
 
+        //Check if data exists from database and update textfields
         ReadHousing();
         ReadConsumption();
         ReadVehicle();
-
         DatabaseHandler handler = new DatabaseHandler();
         handler.baseReadVehicle();
         handler.baseReadConsumption();
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //Getting existing housing data from database
+    //Get existing housing data from database if it exists and update textview with data
     public void ReadHousing() {
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("housing").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //Getting existing vehicle data from database
+    //Get existing vehicle data from database if it exists and update textview with data
     public void ReadVehicle() {
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("vehicle").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -112,9 +112,6 @@ public class MainActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     String stringResult = snapshot.child("result").getValue(Double.class).toString();
                     double result = Float.parseFloat(stringResult);
-                    /*Double result = snapshot.child("result").getValue(Double.class);
-                    result1 = Math.round(result1 * 10);
-                    result1 = result1/10*/
                     textView_VehicleSaved.setText("Current emissions(CO2 kg/year): "+String.format("%.2f",result));
                     textView_VehicleSaved.setTextColor(Color.BLACK);
                 }
@@ -129,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //Getting existing consumption data from database
+    //Get existing consumption data from database if it exists and update textview with data
     public void ReadConsumption() {
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("consumption").child(FirebaseAuth.getInstance().getCurrentUser().getUid());

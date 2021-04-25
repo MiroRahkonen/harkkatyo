@@ -25,6 +25,7 @@ import com.opencsv.CSVWriter;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.Random;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -43,8 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
-
-
 
         button_confirm = (Button) findViewById(R.id.button_LoginButton);
         button_return = (Button) findViewById(R.id.button_RegisterReturn);
@@ -79,11 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
+
     //Check if user has given valid email address
     private Boolean checkEmail() {
         String test = editText_EmailAddress2.getText().toString();
@@ -114,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
     //Check if user has given password and if it meets the requirements
     private Boolean checkPassword() {
         String test = editText_Password.getText().toString();
+        boolean check4 = passwordCharacterCheck(test);
         if (test.isEmpty()) {
             editText_Password.setError("You have to give password");
             return false;
@@ -122,12 +119,14 @@ public class RegisterActivity extends AppCompatActivity {
             editText_Password.setError("Password length 8 characters min");
             return false;
         }
+        else if (check4 == false) {
+            editText_Password.setError("Password must contain atleast 1 uppercase letter, number and symbol");
+            return false;
+        }
         else {
             return true;
         }
-
     }
-
 
     //Creates new Account
     public void saveAccount(){
@@ -136,23 +135,8 @@ public class RegisterActivity extends AppCompatActivity {
         String password1 = editText_Password.getText().toString();
         //Create Firebase account
         createUser(email1, password1, name);
-        //createDatabase(email1, password1, name);
-        //DatabaseHandler handler = new DatabaseHandler();
-        //handler.writeBase();
-        System.out.println("Täällä tulostetaan***************************************************");
         finish();
-
-
-
     }
-
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
-    }*/
 
     //Creates new account in Firebase database and check if succesful
     public void createUser(String email, String password, String name) {
@@ -161,48 +145,31 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //Account d1 = new Account(email, password, name);
                             //Create new user in firebase and link it to account
                             DatabaseHandler handler = new DatabaseHandler();
                             handler.baseWriteUser(email, password, name);
-                            //handler.baseReadUser();
-
-                            System.out.println("Toimii************************************************************************************************************************************************************************");
-                            /*
-                            root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
-                            root.setLogLevel(Logger.Level.DEBUG);
-                            root.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(d1);
-                            */
-                            //Store info in database
-                            /*root = FirebaseDatabase.getInstance();
-                            ref = root.getReference("testi");
-                            ref.child(name).setValue("moi");*/
                             Toast.makeText(RegisterActivity.this, "New Account Created", Toast.LENGTH_LONG).show();
-
-
-
                         }
-
-
-
-
-
-
                         else {
                             Toast.makeText(RegisterActivity.this, "Account creation failed",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    // Code from https://stackoverflow.com/questions/36574183/how-to-validate-password-field-in-android, user Sohail Zahid solution
+    //Check if password matches stricter string requirements
+    public static boolean passwordCharacterCheck (final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
 
     }
 
-    /*public void createDatabase(String email, String password, String name) {
-        //Store info in database
-        root = FirebaseDatabase.getInstance();
-        ref = root.getReference("testi");
-        ref.setValue("kukkuluuruu");
 
-    }*/
 
 
 }
