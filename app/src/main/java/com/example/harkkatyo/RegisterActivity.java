@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Boolean checkName() {
         String test = editTextTextPersonName.getText().toString();
         if (test.isEmpty()) {
-            editText_Password.setError("You have to give password");
+            editText_Password.setError("You have to give name");
             return false;
         }
         else {
@@ -115,8 +115,8 @@ public class RegisterActivity extends AppCompatActivity {
             editText_Password.setError("You have to give password");
             return false;
         }
-        else if (test.length() < 8) {
-            editText_Password.setError("Password length 8 characters min");
+        else if (test.length() < 12) {
+            editText_Password.setError("Password length 12 characters min");
             return false;
         }
         else if (check4 == false) {
@@ -138,14 +138,14 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    //Creates new account in Firebase database and check if succesful
+    //Creates new account in Firebase database and check if succesful create corresponding user in database
     public void createUser(String email, String password, String name) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //Create new user in firebase and link it to account
+                            //Create new user in firebase datbase and link it to account
                             DatabaseHandler handler = new DatabaseHandler();
                             handler.baseWriteUser(email, password, name);
                             Toast.makeText(RegisterActivity.this, "New Account Created", Toast.LENGTH_LONG).show();
@@ -158,7 +158,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // Code from https://stackoverflow.com/questions/36574183/how-to-validate-password-field-in-android, user Sohail Zahid solution
-    //Check if password matches stricter string requirements
+    //Check if password matches pattern requirements with matcher. Req: 1 uppercase, 1 symbol and 1 number.
     public static boolean passwordCharacterCheck (final String password) {
         Pattern pattern;
         Matcher matcher;
