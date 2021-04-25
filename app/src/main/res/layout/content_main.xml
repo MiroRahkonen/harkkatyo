@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Co2 App"
+        android:text="@string/login_name"
         android:textColor="@color/teal_700"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
                         android:backgroundTint="@color/green"
                         android:drawableLeft="@drawable/ic_consumption_icon"
                         android:onClick="gotoConsumption"
-                        android:text="Consumption info"
+                        android:text="@string/consumption_info"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:layout_marginTop="6dp"
-                        android:text="Not saved"
+                        android:text="@string/not_saved"
                         app:layout_constraintStart_toStartOf="@+id/button_MainGotoConsumption"
                         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoConsumption" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -82,7 +82,7 @@
                         android:backgroundTint="@color/green"
                         android:drawableLeft="@drawable/ic_housing_icon"
                         android:onClick="gotoHousing"
-                        android:text="House info"
+                        android:text="@string/house_info"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:layout_marginTop="6dp"
-                        android:text="Not saved"
+                        android:text="@string/not_saved"
                         app:layout_constraintStart_toStartOf="@+id/button_MainGotoHousing"
                         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoHousing" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -116,7 +116,7 @@
                         android:backgroundTint="@color/green"
                         android:drawableLeft="@drawable/ic_vehicle_icon"
                         android:onClick="gotoVehicle"
-                        android:text="Car info"
+                        android:text="@string/car_info"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:layout_marginTop="6dp"
-                        android:text="Not saved"
+                        android:text="@string/not_saved"
                         app:layout_constraintStart_toStartOf="@+id/button_MainGotoVehicle"
                         app:layout_constraintTop_toBottomOf="@+id/button_MainGotoVehicle" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -143,7 +143,7 @@
         android:backgroundTint="@color/green"
         android:drawableLeft="@drawable/ic_summary_icon"
         android:onClick="createSummary"
-        android:text="Create summary"
+        android:text="@string/create_summary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

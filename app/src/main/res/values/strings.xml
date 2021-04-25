@@ -57,4 +57,19 @@
     <string name="vehicle_size">Size:</string>
     <string name="vehicle_passengers">Passengers:</string>
     <string name="consumption_summary_total">Consumption summary total</string>
+    <string name="range_vehicle_year">Range: 1800 - 2021</string>
+    <string name="distance_driven">Distance driven(km/year):</string>
+    <string name="range_dist">Range: 0 - 120 000</string>
+    <string name="range_passengers">Range: 1 - 10</string>
+    <string name="consumption_info">Consumption info</string>
+    <string name="house_info">House info</string>
+    <string name="car_info">Car info</string>
+    <string name="create_summary">Create summary</string>
+    <string name="not_saved">Not saved</string>
+    <string name="menu_return">Return</string>
+    <string name="save_data">Save data</string>
+    <string name="summary_consumption">(consumption)</string>
+    <string name="summary_housing">(housing)</string>
+    <string name="summary_vehicle">(vehicle)</string>
+    <string name="summary_total">(total)</string>
 </resources>
