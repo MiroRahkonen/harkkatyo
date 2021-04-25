@@ -31,6 +31,7 @@ public class Vehicle {
         }
         return vehicle; }
 
+    //Saves parameters to the object and gets calculation results from API to the object this allows the parameters and results to be accessed from every activity
     public void vehicleResults(int distance, int passengers, int year, String fuel, String size){
         this.distance = distance;
         this.passengers = passengers;

@@ -50,6 +50,7 @@ public class Consumption {
         }
         return consumption; }
 
+    //Saves parameters to the object and gets calculation results from API to the object this allows the parameters and results to be accessed from every activity
     public void consumptionResults(int clothing, int communications, int electronics, int other, int paper, int recreation, int shoes){
         this.clothing = clothing;
         this.communications = communications;

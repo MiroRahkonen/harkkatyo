@@ -20,9 +20,6 @@ public class Housing {
         residents = 0;
         type = "flat";
     }
-    //Test
-
-
 
     public static Housing getInstance(){
         if (housing == null){
@@ -30,6 +27,7 @@ public class Housing {
         }
         return housing;}
 
+    //Saves parameters to the object and gets calculation results from API to the object this allows the parameters and results to be accessed from every activity
     public void housingResults(int area, int residents, String type){
         this.area = area;
         this.residents = residents;
