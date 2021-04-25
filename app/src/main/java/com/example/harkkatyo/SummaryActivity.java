@@ -31,6 +31,10 @@ public class SummaryActivity extends AppCompatActivity {
     }
 
     public void saveData(View v){
+        double consumptionsum = consumptionData.getConsumptionTotal();
+        double vehiclesum = vehicleData.getResult();
+        double housingsum = housingData.getResult();
+
         Toast.makeText(SummaryActivity.this, "Data saved",Toast.LENGTH_SHORT).show();
         finish();
     }

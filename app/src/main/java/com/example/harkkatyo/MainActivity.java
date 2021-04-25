@@ -45,10 +45,9 @@ public class MainActivity extends AppCompatActivity {
         ReadVehicle();
 
         DatabaseHandler handler = new DatabaseHandler();
-        //handler.baseReadVehicle();
-        //handler.baseReadConsumption();
+        handler.baseReadVehicle();
+        handler.baseReadConsumption();
         handler.baseReadHousing();
-        //handler.baseReadVehicle();
 
 
         consumptionData = Consumption.getInstance();
@@ -97,20 +96,18 @@ public class MainActivity extends AppCompatActivity {
         //Saving to different variables based on the activity
         switch (fromActivity) {
             case ("consumptionActivity"):
-                //textView_ConsumptionSaved.setText("Data saved");
-                //textView_ConsumptionSaved.setTextColor(Color.BLACK);
+                System.out.println(consumptionData.getURL());
+                textView_ConsumptionSaved.setTextColor(Color.BLACK);
                 consumptionSaved = true;
                 break;
 
             case ("housingActivity"):
-                //textView_HousingSaved.setText("Data saved");
-                //textView_HousingSaved.setTextColor(Color.BLACK);
+                textView_HousingSaved.setTextColor(Color.BLACK);
                 housingSaved = true;
                 break;
 
             case ("vehicleActivity"):
-                //textView_VehicleSaved.setText("Data saved");
-                //textView_VehicleSaved.setTextColor(Color.BLACK);
+                textView_VehicleSaved.setTextColor(Color.BLACK);
                 vehicleSaved = true;
                 break;
         }
@@ -119,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
     public void createSummary(View v){
         //Testing if all data has been saved
 
-        if (consumptionSaved && housingSaved && vehicleSaved) {
+        //if (consumptionSaved && housingSaved && vehicleSaved) {
+        if (true) {
             Intent intent = new Intent(MainActivity.this, SummaryActivity.class);
             startActivity(intent);
         }
@@ -134,9 +132,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
                     String result = snapshot.child("result").getValue(Double.class).toString();
-                    System.out.println(result);
                     textView_HousingSaved.setText(result);
                 }
             }
@@ -156,12 +153,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
                     String result = snapshot.child("result").getValue(Double.class).toString();
                     /*Double result = snapshot.child("result").getValue(Double.class);
                     result1 = Math.round(result1 * 10);
                     result1 = result1/10*/
-                    System.out.println(result);
                     textView_VehicleSaved.setText(result);
                 }
             }
@@ -181,9 +177,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()) {
                     String result = snapshot.child("consumptionTotal").getValue(Double.class).toString();
-                    System.out.println(result);
                     textView_ConsumptionSaved.setText(result);
                 }
             }

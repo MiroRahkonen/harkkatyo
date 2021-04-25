@@ -61,10 +61,12 @@ public class DatabaseHandler {
         });
     }
 
-    public void baseWriteSummary() {
+    public void baseWriteSummary(double vehiclesum, double consumptionsum, double housingsum) {
+        Summary summary = new Summary(vehiclesum, consumptionsum, housingsum);
+
         root = FirebaseDatabase.getInstance("https://harkkatyo-e2aad-default-rtdb.europe-west1.firebasedatabase.app");
         ref = root.getReference("summary").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        ref.setValue("hohoi");
+        ref.setValue(summary);
 
     }
     public void baseReadHousing() {
@@ -104,7 +106,7 @@ public class DatabaseHandler {
                 if (snapshot.exists()) {
                     int distance = snapshot.child("distance").getValue(int.class);
                     String fuel = snapshot.child("fuel").getValue(String.class);
-                    int passengers = snapshot.child("passsengers").getValue(int.class);
+                    int passengers = snapshot.child("passengers").getValue(int.class);
                     double result = snapshot.child("result").getValue(Double.class);
                     String size = snapshot.child("size").getValue(String.class);
                     int year = snapshot.child("year").getValue(int.class);
