@@ -65,7 +65,9 @@ public class ConsumptionActivity extends AppCompatActivity {
         recreation.setText("Current: "+ consumptionData.getRecreation());
     }
 
-    //Tests if the input is within the correct range and returns true if all input is correct
+    /*Tests if the input is within the
+    correct range and returns true
+    if all input is correct*/
     public Boolean testInput(){
         if((clothing > 1000) || (clothing < 0)){
             Toast.makeText(ConsumptionActivity.this, "Clothing range is (0 - 1000)",Toast.LENGTH_SHORT).show();

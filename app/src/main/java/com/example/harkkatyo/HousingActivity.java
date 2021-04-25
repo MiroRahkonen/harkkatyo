@@ -84,7 +84,9 @@ public class HousingActivity extends AppCompatActivity {
                 break;
         }
     }
-    //Tests if the input is within the correct range and returns true if all input is correct
+    /*Tests if the input is within the
+    correct range and returns true
+    if all input is correct*/
     public Boolean testInput(){
         if(area < 1){
             Toast.makeText(HousingActivity.this, "Area range is (1 - ...)",Toast.LENGTH_SHORT).show();

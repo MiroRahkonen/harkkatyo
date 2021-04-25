@@ -125,7 +125,9 @@ public class VehicleActivity extends AppCompatActivity {
         }
     }
 
-    //Tests if the input is within the correct range and returns true if all input is correct
+    /*Tests if the input is within the
+    correct range and returns true
+    if all input is correct*/
     public Boolean testInput(){
         if((year > 2030) || (year < 1800)){
             Toast.makeText(VehicleActivity.this, "Year range is (1800 - 2030)",Toast.LENGTH_SHORT).show();

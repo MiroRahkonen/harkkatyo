@@ -39,7 +39,8 @@ public class SummaryActivity extends AppCompatActivity {
         finish();
     }
 
-    //Puts existing data into the text fields
+    /*Gets total emissions for each class
+    and sets them to the text fields*/
     public void setSummaries(){
         double doubleTotal = consumptionData.getConsumptionTotal()+housingData.getResult()+vehicleData.getResult();
 
@@ -54,6 +55,8 @@ public class SummaryActivity extends AppCompatActivity {
         textView_SummaryTotal.setText("Total emissions(CO2 kg/year)\nTotal: "+String.format("%.2f",doubleTotal));
     }
 
+    /*Doesn't save data to the database
+    and returns to main window*/
     public void cancel(View v){
         finish();
     }
